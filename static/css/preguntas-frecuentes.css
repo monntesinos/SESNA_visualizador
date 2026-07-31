@@ -1,0 +1,65 @@
+/* ============================================================
+   ESTILOS DE PREGUNTAS FRECUENTES
+   Acordeón de preguntas y respuestas.
+   ============================================================ */
+
+#lista-preguntas {
+	max-width: 780px;
+	margin: 0 auto;
+	display: flex;
+	flex-direction: column;
+	gap: var(--espacio-xs);
+}
+
+.faq-item {
+	background-color: var(--color-fondo-blanco);
+	border: 1px solid var(--color-borde);
+	border-radius: var(--radio-borde);
+	overflow: hidden;
+}
+
+.faq-pregunta-titulo {
+	margin: 0;
+}
+
+.faq-pregunta {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--espacio-sm);
+	background: none;
+	border: none;
+	text-align: left;
+	font-family: var(--fuente-principal);
+	font-size: var(--texto-base);
+	font-weight: 600;
+	color: var(--color-titulo);
+	padding: var(--espacio-sm) var(--espacio-md);
+	cursor: pointer;
+}
+
+.faq-pregunta::after {
+	content: '+';
+	flex-shrink: 0;
+	font-size: var(--texto-xl);
+	color: var(--color-primario);
+	transition: transform var(--transicion);
+}
+
+.faq-pregunta[aria-expanded="true"]::after {
+	transform: rotate(45deg);
+}
+
+.faq-pregunta:hover {
+	background-color: var(--color-fondo-alterno);
+}
+
+.faq-respuesta {
+	padding: 0 var(--espacio-md) var(--espacio-md);
+	color: var(--color-texto);
+}
+
+.faq-respuesta p + p {
+	margin-top: var(--espacio-xs);
+}

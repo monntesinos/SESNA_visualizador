@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Preguntas frecuentes - CICM</title>
+	<meta name="description" content="Respuestas a las preguntas más frecuentes sobre el Catálogo de Información sobre la Corrupción en México.">
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@500;600;700&display=swap" rel="stylesheet">
+
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/variables.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/estilos-globales.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/preguntas-frecuentes.css') }}">
+</head>
+<body>
+
+	<a class="skip-link" href="#contenido-principal">Saltar al contenido principal</a>
+
+	<!-- Barra institucional -->
+	<div class="barra-institucional">
+		<div class="container">
+			<img src="{{ url_for('static', filename='img/logo-sesna.png') }}" alt="Secretaría Ejecutiva del Sistema Nacional Anticorrupción (SESNA)" class="logo-sesna">
+		</div>
+	</div>
+
+	<!-- Encabezado principal -->
+	<header id="encabezado-principal">
+		<div class="container">
+			<a href="{{ url_for('inicio') }}" class="logo-sitio">
+				CICM
+				<span>Catálogo de Información sobre la Corrupción en México</span>
+			</a>
+
+			<div class="encabezado-acciones">
+				<a href="{{ url_for('buscador_ciudadano') }}" class="boton-buscar" aria-label="Ir directamente al buscador ciudadano">
+					<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+						<circle cx="11" cy="11" r="7"></circle>
+						<line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+					</svg>
+					<span class="buscar-texto">Buscar</span>
+				</a>
+
+				<button type="button" class="boton-menu-movil" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="menu-principal">
+					<span></span><span></span><span></span>
+				</button>
+
+				<!-- Menú de navegación -->
+				<nav id="menu-principal" aria-label="Menú principal">
+					<ul class="menu-nav">
+						<li><a href="{{ url_for('inicio') }}">Inicio</a></li>
+						<li><a href="{{ url_for('buscador_ciudadano') }}">Búsqueda</a></li>
+						<li><a href="{{ url_for('preguntas_frecuentes') }}" aria-current="page">Preguntas frecuentes</a></li>
+					<li><a href="{{ url_for('contacto') }}">Contáctanos</a></li>
+				</ul>
+			</nav>
+			</div>
+		</div>
+	</header>
+
+	<main id="contenido-principal">
+
+		<!-- Banner principal -->
+		<section class="banner">
+			<div class="container">
+				<h1>Preguntas frecuentes</h1>
+				<p class="subtitulo">Resuelve tus dudas sobre el CICM: qué es, cómo se construye y qué dice sobre la corrupción en México.</p>
+			</div>
+		</section>
+
+		<!-- Sección de preguntas frecuentes -->
+		<section id="seccion-faq">
+			<div class="container">
+				<div id="lista-preguntas">
+
+					<div class="faq-item">
+						<h2 class="faq-pregunta-titulo">
+							<button type="button" class="faq-pregunta" aria-expanded="false" aria-controls="resp-1" id="pregunta-1">
+								¿Qué es el CICM?
+							</button>
+						</h2>
+						<div id="resp-1" class="faq-respuesta" role="region" aria-labelledby="pregunta-1" hidden>
+							<p>El Catálogo de Información sobre la Corrupción en México (CICM) es una iniciativa de la Secretaría Ejecutiva del Sistema Nacional Anticorrupción (SESNA). Esta herramienta facilita la sistematización, organización y presentación de variables generadas por organismos públicos, académicos, sociedad civil y entidades internacionales. Como repositorio, permite analizar las diversas manifestaciones del fenómeno de la corrupción en México, así como los esfuerzos anticorrupción implementados en los distintos niveles del Estado.</p>
+						</div>
+					</div>
+
+					<div class="faq-item">
+						<h2 class="faq-pregunta-titulo">
+							<button type="button" class="faq-pregunta" aria-expanded="false" aria-controls="resp-2" id="pregunta-2">
+								¿Cuándo se creó el CICM?
+							</button>
+						</h2>
+						<div id="resp-2" class="faq-respuesta" role="region" aria-labelledby="pregunta-2" hidden>
+							<p>El CICM en su versión 1.0 fue presentado en abril del 2020. Dada la cantidad de información disponible, se optó por liberar un primer catálogo de 600 variables (150 por cada uno de los cuatro procesos definidos en la LGSNA) que permitieron guiar el desarrollo de esta herramienta.</p>
+						</div>
+					</div>
+
+					<div class="faq-item">
+						<h2 class="faq-pregunta-titulo">
+							<button type="button" class="faq-pregunta" aria-expanded="false" aria-controls="resp-3" id="pregunta-3">
+								¿Cuáles son las principales fuentes de información?
+							</button>
+						</h2>
+						<div id="resp-3" class="faq-respuesta" role="region" aria-labelledby="pregunta-3" hidden>
+							<p>Entre las 33 instituciones con funciones de información del CICM, el INEGI es la principal fuente. En la versión más reciente del catálogo (V2.0), el 75% de las variables registradas provienen del INEGI.</p>
+						</div>
+					</div>
+
+					<div class="faq-item">
+						<h2 class="faq-pregunta-titulo">
+							<button type="button" class="faq-pregunta" aria-expanded="false" aria-controls="resp-4" id="pregunta-4">
+								¿Cómo se utiliza/procesa la información de dichas fuentes?
+							</button>
+						</h2>
+						<div id="resp-4" class="faq-respuesta" role="region" aria-labelledby="pregunta-4" hidden>
+							<p>Tras recopilar la información de fuentes oficiales, se identifican las variables que, de manera directa o indirecta, guardan relación con el fenómeno de la corrupción y las acciones destinadas a su control. Estas variables se clasifican según las temáticas predefinidas del CICM. Finalmente, se genera una base de datos para el análisis de sus valores.</p>
+						</div>
+					</div>
+
+					<div class="faq-item">
+						<h2 class="faq-pregunta-titulo">
+							<button type="button" class="faq-pregunta" aria-expanded="false" aria-controls="resp-5" id="pregunta-5">
+								¿Cómo se crean las variables?
+							</button>
+						</h2>
+						<div id="resp-5" class="faq-respuesta" role="region" aria-labelledby="pregunta-5" hidden>
+							<p>El procesamiento de la información proveniente de fuentes oficiales conlleva la creación de nuevas variables, las cuales se asignan a diversas categorías que, de manera directa o indirecta, se relacionan con alguna temática del fenómeno de la corrupción.</p>
+						</div>
+					</div>
+
+					<div class="faq-item">
+						<h2 class="faq-pregunta-titulo">
+							<button type="button" class="faq-pregunta" aria-expanded="false" aria-controls="resp-6" id="pregunta-6">
+								¿Cómo se clasifican las variables?
+							</button>
+						</h2>
+						<div id="resp-6" class="faq-respuesta" role="region" aria-labelledby="pregunta-6" hidden>
+							<p>Cada una de las variables creadas se clasifica según los cuatro procesos principales definidos por la LGSNA: prevención, detección, sanción y fiscalización, así como el control de recursos públicos. Posteriormente, se realiza una segunda clasificación conforme a los ejes estratégicos y temas establecidos en la PNA.</p>
+						</div>
+					</div>
+
+					<div class="faq-item">
+						<h2 class="faq-pregunta-titulo">
+							<button type="button" class="faq-pregunta" aria-expanded="false" aria-controls="resp-7" id="pregunta-7">
+								¿Cuál es la periodicidad de los datos?
+							</button>
+						</h2>
+						<div id="resp-7" class="faq-respuesta" role="region" aria-labelledby="pregunta-7" hidden>
+							<p>Se tienen datos anuales, bienales, semestrales, trimestrales y la categoría "otro".</p>
+						</div>
+					</div>
+
+					<div class="faq-item">
+						<h2 class="faq-pregunta-titulo">
+							<button type="button" class="faq-pregunta" aria-expanded="false" aria-controls="resp-8" id="pregunta-8">
+								¿Cuál es la desagregación geográfica de los datos?
+							</button>
+						</h2>
+						<div id="resp-8" class="faq-respuesta" role="region" aria-labelledby="pregunta-8" hidden>
+							<p>Los datos se desagregan a nivel federal, estatal, municipal, nacional y "otro". La mayoría corresponde a datos estatales (39% del total) y nacionales (30% del total).</p>
+						</div>
+					</div>
+
+					<div class="faq-item">
+						<h2 class="faq-pregunta-titulo">
+							<button type="button" class="faq-pregunta" aria-expanded="false" aria-controls="resp-9" id="pregunta-9">
+								¿Cómo se mide la corrupción?
+							</button>
+						</h2>
+						<div id="resp-9" class="faq-respuesta" role="region" aria-labelledby="pregunta-9" hidden>
+							<p>La corrupción se mide a través de dos enfoques principales: directos e indirectos.</p>
+							<p>Los métodos directos buscan recopilar datos mediante procedimientos estadísticos estandarizados, enfocándose en experiencias reales de corrupción. Se basan en indicadores como las tasas de prevalencia e incidencia de la corrupción o la de soborno.</p>
+							<p>Por otro lado, los métodos indirectos miden la percepción de la corrupción en lugar de su incidencia real, ya que esta última es difícil de cuantificar con precisión. Entre los principales indicadores de este tipo se encuentran el Índice de Percepción de la Corrupción (IPC), el Índice de Control de la Corrupción (ICC) y el Índice Nacional de Corrupción y Buen Gobierno (INCBG). Asimismo, encuestas como las de Latinobarómetro y las realizadas por el INEGI evalúan la percepción de la corrupción en instituciones y unidades económicas.</p>
+						</div>
+					</div>
+
+					<div class="faq-item">
+						<h2 class="faq-pregunta-titulo">
+							<button type="button" class="faq-pregunta" aria-expanded="false" aria-controls="resp-10" id="pregunta-10">
+								¿Cómo vamos en México respecto a la corrupción?
+							</button>
+						</h2>
+						<div id="resp-10" class="faq-respuesta" role="region" aria-labelledby="pregunta-10" hidden>
+							<p>En el Índice de Percepción de la Corrupción (IPC) 2024, México se ubica en la posición 140 de 180 países, con una calificación de 26 puntos sobre 100. Esta cifra representa una caída de cinco puntos respecto a 2022 y coloca al país en una posición desfavorable dentro de América Latina, por debajo de Brasil (34 puntos) y Chile (63 puntos), aunque aún por encima de Guatemala (25 puntos) y Paraguay (24 puntos).</p>
+							<p>En cuanto al Índice de Control de la Corrupción (ICC), si bien no se dispone de datos actualizados para 2024, en 2019 México obtuvo una calificación de -0.82108, lo que indica un bajo control de la corrupción en comparación con otras naciones de la región.</p>
+							<p>En 2017, México registró una tasa de soborno del 44%, lo que lo posicionó como el segundo país con mayor incidencia de sobornos en América Latina, sólo superado por República Dominicana. Este porcentaje representó un aumento considerable en comparación con el 33% registrado en 2013.</p>
+							<p>Por otro lado, la tasa de prevalencia de la corrupción -que mide el porcentaje de personas que experimentaron actos de corrupción al interactuar con funcionarios públicos- pasó del 12.1% en 2013 al 13.96% en 2023. La tasa de incidencia, que refleja la cantidad de actos de corrupción por cada 100,000 habitantes, también se ha incrementado, alcanzando en 2023 un total de 25,394 actos.</p>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</section>
+
+	</main>
+
+	<!-- Pie de página -->
+	<footer id="pie-pagina">
+		<div class="container">
+			<div class="footer-contenido">
+				<div class="footer-institucional">
+					<h4>CICM</h4>
+					<p>Catálogo de Información sobre la Corrupción en México, una herramienta de la Secretaría Ejecutiva del Sistema Nacional Anticorrupción (SESNA).</p>
+				</div>
+				<nav class="footer-enlaces" aria-label="Enlaces del pie de página">
+					<h4>Navegación</h4>
+					<ul>
+						<li><a href="{{ url_for('inicio') }}">Inicio</a></li>
+						<li><a href="{{ url_for('preguntas_frecuentes') }}">Preguntas frecuentes</a></li>
+						<li><a href="{{ url_for('contacto') }}">Contáctanos</a></li>
+					</ul>
+				</nav>
+				<div class="footer-sesna">
+					<h4>Más información</h4>
+					<ul class="footer-enlaces">
+						<li><a href="https://www.sesna.gob.mx" target="_blank" rel="noopener">Sitio de la SESNA</a></li>
+						<li><a href="http://sna.org.mx" target="_blank" rel="noopener">Sistema Nacional Anticorrupción</a></li>
+					</ul>
+				</div>
+			</div>
+			<p class="footer-derechos">&copy; 2026 CICM - SESNA. Todos los derechos reservados.</p>
+		</div>
+	</footer>
+
+	<script src="{{ url_for('static', filename='js/navegacion.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/preguntas-frecuentes.js') }}"></script>
+</body>
+</html>

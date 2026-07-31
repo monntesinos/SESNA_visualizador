@@ -1,0 +1,43 @@
+/* ============================================================
+   ESTILOS DE CONTACTO
+   Formulario de contacto y mensajes de validación.
+   ============================================================ */
+
+.contenedor-formulario {
+	max-width: 720px;
+}
+
+#info-invitacion {
+	text-align: center;
+	margin-bottom: var(--espacio-md);
+}
+
+#form-contacto {
+	display: flex;
+	flex-direction: column;
+}
+
+.fila-inputs {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: var(--espacio-sm);
+}
+
+@media (max-width: 640px) {
+	.fila-inputs {
+		grid-template-columns: 1fr;
+	}
+}
+
+.mensaje-envio {
+	background-color: var(--color-fondo-alterno);
+	color: var(--color-primario);
+	border-radius: var(--radio-borde);
+	padding: 0.75rem var(--espacio-sm);
+	margin-bottom: var(--espacio-sm);
+	font-size: var(--texto-sm);
+}
+
+#form-contacto .boton {
+	align-self: flex-start;
+}

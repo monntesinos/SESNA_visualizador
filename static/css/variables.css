@@ -1,0 +1,60 @@
+/* ============================================================
+   VARIABLES GLOBALES - CICM
+   Paleta de colores, tipografía y espaciados compartidos
+   por todas las páginas del sitio. Este archivo se importa
+   primero en cada HTML, antes de estilos-globales.css
+   ============================================================ */
+
+:root {
+
+  /* Variables de colores: gama guinda (inspirada en Morena, sin rojo intenso) */
+  --color-primario: #7A1F3D;         /* Guinda principal: header, enlaces activos */
+  --color-primario-oscuro: #4A1428;  /* Hover de botones, footer */
+  --color-primario-claro: #96274C;   /* Variante clara para degradados */
+  --color-secundario: #A94464;       /* Guinda rosado: acentos, tarjetas, iconos */
+  --color-boton: #7A1F3D;            /* Fondo de botones primarios */
+  --color-boton-hover: #5A1730;      /* Fondo de botones al pasar el mouse */
+  --color-titulo: #3D0F1F;           /* Guinda casi negro: h1, h2, h3 */
+  --color-acento: #C9A15A;           /* Dorado sobrio: detalles institucionales */
+  --color-acento-oscuro: #A67F3D;    /* Hover/variante oscura del dorado */
+
+  /* Colores de fondo */
+  --color-fondo: #FAF7F5;            /* Fondo general de la página */
+  --color-fondo-alterno: #F3EAEC;    /* Fondo de secciones alternas / tarjetas */
+  --color-fondo-blanco: #FFFFFF;     /* Fondo de tarjetas y formularios */
+
+  /* Colores neutros */
+  --color-texto: #2A2426;            /* Texto principal */
+  --color-texto-claro: #6B6469;      /* Texto secundario / descripciones */
+  --color-borde: #E3D8DB;            /* Bordes de tarjetas, inputs, separadores */
+  --color-blanco: #FFFFFF;
+
+  /* Tipografía: sans-serif para texto corrido, serif editorial para títulos */
+  --fuente-principal: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --fuente-titulos: 'Lora', 'Georgia', 'Times New Roman', serif;
+
+  --texto-xs: 0.8rem;
+  --texto-sm: 0.9rem;
+  --texto-base: 1.05rem;
+  --texto-lg: 1.2rem;
+  --texto-xl: 1.6rem;
+  --texto-2xl: 2.1rem;
+  --texto-3xl: 3rem;
+
+  /* Espaciados consistentes */
+  --espacio-xs: 0.5rem;
+  --espacio-sm: 1rem;
+  --espacio-md: 1.5rem;
+  --espacio-lg: 2.5rem;
+  --espacio-xl: 4rem;
+
+  /* Otros */
+  --radio-borde: 12px;
+  --radio-borde-sm: 8px;
+  --sombra-suave: 0 1px 3px rgba(61, 15, 31, 0.06);
+  --sombra-tarjeta: 0 4px 16px rgba(61, 15, 31, 0.09);
+  --sombra-elevada: 0 14px 34px rgba(61, 15, 31, 0.16);
+  --transicion: 0.2s ease-in-out;
+  --transicion-lenta: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  --ancho-contenido: 1140px;
+}

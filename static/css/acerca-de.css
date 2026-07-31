@@ -1,0 +1,234 @@
+/* ============================================================
+   ESTILOS DE ACERCA DE
+   ============================================================ */
+
+.eyebrow {
+	color: var(--color-secundario);
+	font-size: var(--texto-xs);
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+	margin-bottom: 0.35rem;
+}
+
+.subtitulo-seccion {
+	margin-bottom: var(--espacio-md);
+}
+
+/* ============================================================
+   Tríptico: Objetivo / Misión / Visión
+   Tres tarjetas siempre visibles en fila 
+   ------ No requiere JavaScript. Cada panel usa un
+   color distinto de la paleta guinda/dorado en su borde superior
+   y en el subrayado del título, para diferenciarlos a simple vista.
+   ============================================================ */
+.triptico {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: var(--espacio-md);
+	margin-top: var(--espacio-md);
+}
+
+.triptico-panel {
+	background-color: var(--color-fondo-blanco);
+	border-top: 4px solid var(--color-secundario);
+	border-radius: var(--radio-borde);
+	padding: var(--espacio-lg) var(--espacio-md);
+	box-shadow: var(--sombra-tarjeta);
+	text-align: center;
+	transition: transform var(--transicion), box-shadow var(--transicion);
+}
+
+.triptico-panel:hover {
+	transform: translateY(-4px);
+	box-shadow: var(--sombra-elevada);
+}
+
+/* Un color de acento distinto por panel, en el orden Objetivo / Misión / Visión */
+.triptico-panel:nth-child(1) { border-top-color: var(--color-primario); }
+.triptico-panel:nth-child(2) { border-top-color: var(--color-secundario); }
+.triptico-panel:nth-child(3) { border-top-color: var(--color-acento); }
+
+.triptico-panel h3 {
+	position: relative;
+	display: inline-block;
+	color: var(--color-primario);
+	font-size: var(--texto-xl);
+	margin-bottom: 1.1rem;
+	padding-bottom: 0.6rem;
+}
+
+.triptico-panel h3::after {
+	content: "";
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 42px;
+	height: 3px;
+	border-radius: 2px;
+	background-color: var(--color-acento);
+}
+
+.triptico-panel:nth-child(1) h3::after { background-color: var(--color-primario); }
+.triptico-panel:nth-child(2) h3::after { background-color: var(--color-secundario); }
+.triptico-panel:nth-child(3) h3::after { background-color: var(--color-acento); }
+
+.triptico-panel p {
+	margin-bottom: 0;
+	color: var(--color-texto-claro);
+	line-height: 1.7;
+	text-align: left;
+}
+
+@media (max-width: 800px) {
+	.triptico {
+		grid-template-columns: 1fr;
+	}
+}
+
+/* ============================================================
+   Línea del tiempo: Antecedentes y origen del CICM
+------  punto por evento.
+   Para agregar eventos, ver el comentario en inicio.html.
+   ============================================================ */
+.linea-tiempo {
+	position: relative;
+	margin-top: var(--espacio-md);
+	padding-left: var(--espacio-lg);
+}
+
+.linea-tiempo::before {
+	content: "";
+	position: absolute;
+	top: 6px;
+	bottom: 6px;
+	left: 7px;
+	width: 2px;
+	background-color: var(--color-borde);
+}
+
+.linea-tiempo-evento {
+	position: relative;
+	padding-bottom: var(--espacio-md);
+}
+
+.linea-tiempo-evento:last-child {
+	padding-bottom: 0;
+}
+
+.linea-tiempo-evento::before {
+	content: "";
+	position: absolute;
+	top: 6px;
+	left: calc(-1 * var(--espacio-lg) + 3px);
+	width: 12px;
+	height: 12px;
+	border-radius: 50%;
+	background-color: var(--color-primario);
+	box-shadow: 0 0 0 3px var(--color-fondo-blanco);
+}
+
+.linea-tiempo-fecha {
+	display: block;
+	color: var(--color-primario);
+	font-weight: 700;
+	font-size: var(--texto-sm);
+	margin-bottom: 0.2rem;
+}
+
+.linea-tiempo-contenido p {
+	margin-bottom: 0;
+}
+
+/* ============================================================
+   Menú de Ejes del PNA: cuadrado dividido en 4 cuadrantes
+   Cada botón es un cuadrante coloreado que muestra SOLO el
+   número de su eje 
+   ------(el título completo se lee en .eje-panel,
+   ver más abajo, y en el aria-label del botón para lectores de
+   pantalla).
+   ------ Al hacer clic se muestra su descripción en
+   .ejes-contenido (oculta por defecto). Lógica de clic en
+   acerca-de.js.
+   ============================================================ */
+.menu-ejes-cuadros {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	grid-template-rows: repeat(2, 1fr);
+	gap: 3px;
+	max-width: 320px;
+	aspect-ratio: 1 / 1;
+	margin: var(--espacio-md) 0;
+}
+
+/* Nota:el redondeadP va en cada botón (ver nth-child más abajo),
+   NO con overflow:hidden en este contenedor, porque eso recortaba
+   los números cuando el cuadro era chico. No QUITTAR!!!!!!!!!!!!! */
+
+.eje-cuadro {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 0;
+	min-height: 0;
+	border: none;
+	color: var(--color-blanco);
+	padding: var(--espacio-xs);
+	cursor: pointer;
+	opacity: 0.72;
+	transition: opacity var(--transicion), transform var(--transicion);
+}
+
+/* Redondeado solo en la esquina externa de cada cuadro */
+.eje-cuadro:nth-child(1) { border-top-left-radius: var(--radio-borde-sm); }
+.eje-cuadro:nth-child(2) { border-top-right-radius: var(--radio-borde-sm); }
+.eje-cuadro:nth-child(3) { border-bottom-left-radius: var(--radio-borde-sm); }
+.eje-cuadro:nth-child(4) { border-bottom-right-radius: var(--radio-borde-sm); }
+
+.eje-cuadro:hover {
+	opacity: 1;
+}
+
+.eje-cuadro.activo {
+	opacity: 1;
+	box-shadow: inset 0 0 0 3px rgba(255, 255, 255, 0.65);
+}
+
+.eje-cuadro-numero {
+	font-family: var(--fuente-titulos);
+	font-size: var(--texto-2xl);
+	font-weight: 700;
+	line-height: 1;
+}
+
+/* Colores propios de cada eje: verde, azul, morado y rosa  */
+.eje-cuadro.eje-1 { background: linear-gradient(145deg, #6BCB22, #5DB51E); }
+.eje-cuadro.eje-2 { background: linear-gradient(145deg, #4B95C6, #3F86B6); }
+.eje-cuadro.eje-3 { background: linear-gradient(145deg, #7E6AA9, #705C9A); }
+.eje-cuadro.eje-4 { background: linear-gradient(145deg, #D94B8A, #C93D7C); }
+
+/* Panel de descripción del eje activo (oculto hasta hacer clic) */
+.eje-panel {
+	display: none;
+	background-color: var(--color-fondo-alterno);
+	border-left: 5px solid var(--color-primario);
+	border-radius: var(--radio-borde);
+	padding: var(--espacio-md) var(--espacio-lg);
+	box-shadow: var(--sombra-suave);
+}
+
+.eje-panel h3 {
+	color: var(--color-primario);
+	font-size: var(--texto-xl);
+	margin-bottom: 0.75rem;
+}
+
+.eje-panel.activo {
+	display: block;
+}
+/* LADO DERECHO DEL COLOR DE CADA EJE EN LA DESCRIPCION  */
+.eje-panel.eje-1 { border-left-color: #5DB51E; }
+.eje-panel.eje-2 { border-left-color: #3F86B6; }
+.eje-panel.eje-3 { border-left-color: #705C9A; }
+.eje-panel.eje-4 { border-left-color: #C93D7C; }

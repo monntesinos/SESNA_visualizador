@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Buscador ciudadano - CICM</title>
+	<meta name="robots" content="noindex">
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@500;600;700&display=swap" rel="stylesheet">
+
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/variables.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/estilos-globales.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/busqueda.css') }}">
+</head>
+<body>
+
+	<a class="skip-link" href="#contenido-principal">Saltar al contenido principal</a>
+
+	<!-- Barra institucional -->
+	<div class="barra-institucional">
+		<div class="container">
+			<img src="{{ url_for('static', filename='img/logo-sesna.png') }}" alt="Secretaría Ejecutiva del Sistema Nacional Anticorrupción (SESNA)" class="logo-sesna">
+		</div>
+	</div>
+
+	<!-- Encabezado principal -->
+	<header id="encabezado-principal">
+		<div class="container">
+			<a href="{{ url_for('inicio') }}" class="logo-sitio">
+				CICM
+				<span>Catálogo de Información sobre la Corrupción en México</span>
+			</a>
+
+			<div class="encabezado-acciones">
+				<a href="{{ url_for('buscador_ciudadano') }}" class="boton-buscar" aria-label="Ir directamente al buscador ciudadano">
+					<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+						<circle cx="11" cy="11" r="7"></circle>
+						<line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+					</svg>
+					<span class="buscar-texto">Buscar</span>
+				</a>
+
+				<button type="button" class="boton-menu-movil" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="menu-principal">
+					<span></span><span></span><span></span>
+				</button>
+
+				<!-- Menú de navegación -->
+				<nav id="menu-principal" aria-label="Menú principal">
+					<ul class="menu-nav">
+						<li><a href="{{ url_for('inicio') }}">Inicio</a></li>
+						<li><a href="{{ url_for('buscador_ciudadano') }}" aria-current="page">Búsqueda</a></li>
+						<li><a href="{{ url_for('preguntas_frecuentes') }}">Preguntas frecuentes</a></li>
+					<li><a href="{{ url_for('contacto') }}">Contáctanos</a></li>
+				</ul>
+			</nav>
+			</div>
+		</div>
+	</header>
+
+	<main id="contenido-principal">
+
+		<!-- Banner principal -->
+		<section class="banner">
+			<div class="container">
+				<h1>Buscador ciudadano</h1>
+				<p class="subtitulo">Una herramienta de consulta pensada para la ciudadanía, simple y accesible.</p>
+			</div>
+		</section>
+
+		<!-- Aviso de sección en desarrollo -->
+		<section id="en-construccion">
+			<div class="container">
+				<div class="tarjeta tarjeta-proximamente">
+					<h2>Próximamente</h2>
+					<p>Estamos trabajando en el buscador ciudadano. Mientras tanto, puedes consultar las preguntas frecuentes o escribirnos directamente.</p>
+					<a href="{{ url_for('contacto') }}" class="boton">Contáctanos</a>
+				</div>
+			</div>
+		</section>
+
+	</main>
+
+	<!-- Pie de página -->
+	<footer id="pie-pagina">
+		<div class="container">
+			<div class="footer-contenido">
+				<div class="footer-institucional">
+					<h4>CICM</h4>
+					<p>Catálogo de Información sobre la Corrupción en México, una herramienta de la Secretaría Ejecutiva del Sistema Nacional Anticorrupción (SESNA).</p>
+				</div>
+				<nav class="footer-enlaces" aria-label="Enlaces del pie de página">
+					<h4>Navegación</h4>
+					<ul>
+						<li><a href="{{ url_for('inicio') }}">Inicio</a></li>
+						<li><a href="{{ url_for('preguntas_frecuentes') }}">Preguntas frecuentes</a></li>
+						<li><a href="{{ url_for('contacto') }}">Contáctanos</a></li>
+					</ul>
+				</nav>
+				<div class="footer-sesna">
+					<h4>Más información</h4>
+					<ul class="footer-enlaces">
+						<li><a href="https://www.sesna.gob.mx" target="_blank" rel="noopener">Sitio de la SESNA</a></li>
+						<li><a href="http://sna.org.mx" target="_blank" rel="noopener">Sistema Nacional Anticorrupción</a></li>
+					</ul>
+				</div>
+			</div>
+			<p class="footer-derechos">&copy; 2026 CICM - SESNA. Todos los derechos reservados.</p>
+		</div>
+	</footer>
+
+	<script src="{{ url_for('static', filename='js/navegacion.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,444 @@
+/* ============================================================
+   ESTILOS DE INICIO
+   Estilos propios de la página de inicio del CICM.
+   ============================================================ */
+
+/* Sección de cifras del catálogo */
+#cifras-cicm {
+	text-align: center;
+}
+
+#cifras-cicm .numero-destacado {
+	color: var(--color-secundario);
+}
+
+.cuadricula-niveles {
+	margin-top: var(--espacio-md);
+}
+
+.nivel-tarjeta {
+	text-align: center;
+	border-top: 3px solid var(--color-secundario);
+}
+
+/* Sección: acceso directo al buscador (antes "¿Cómo usar este portal?",
+   el título y el texto de esa sección se eliminaron a petición) */
+
+/* Llamado a la acción destacado hacia el buscador */
+.cta-buscador {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: var(--espacio-md);
+	margin-top: var(--espacio-md);
+	padding: var(--espacio-lg);
+	border-radius: var(--radio-borde);
+	background:
+		radial-gradient(circle at 100% 0%, rgba(201, 161, 90, 0.22), transparent 55%),
+		linear-gradient(135deg, var(--color-primario), var(--color-primario-oscuro));
+	box-shadow: var(--sombra-elevada);
+}
+
+.cta-buscador-icono {
+	flex-shrink: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 64px;
+	height: 64px;
+	border-radius: 50%;
+	background-color: rgba(255, 255, 255, 0.14);
+	color: var(--color-acento);
+}
+
+.cta-buscador-icono svg {
+	width: 30px;
+	height: 30px;
+}
+
+.cta-buscador-texto {
+	flex: 1 1 320px;
+}
+
+.cta-buscador-texto h3 {
+	color: var(--color-blanco);
+	margin-bottom: 0.3rem;
+}
+
+.cta-buscador-texto p {
+	color: var(--color-fondo-alterno);
+	margin-bottom: 0;
+}
+
+.cta-buscador-boton {
+	flex-shrink: 0;
+	background-image: none;
+	background-color: var(--color-blanco);
+	color: var(--color-primario);
+	font-size: var(--texto-base);
+	padding: 1rem 2.25rem;
+	box-shadow: none;
+}
+
+.cta-buscador-boton:hover {
+	background-image: none;
+	background-color: var(--color-fondo-alterno);
+	color: var(--color-primario-oscuro);
+	transform: translateY(-2px);
+
+}
+
+
+/* ============================================================
+HISTORIA DEL CICM - SEGUNDA LÍNEA DEL TIEMPO (versión en zigzag)
+Más compacta que la primera. El fondo gris fuerte va en TODA la
+sección (de borde a borde), no solo alrededor de la línea del
+tiempo, para que no se vea como una tarjeta encapsulada.
+============================================================ */
+
+/* Fondo de toda la sección (gris fuerte cálido, misma familia que
+   --color-texto, para contrastar sin salirse de la paleta
+   guinda/dorado del sitio). Se sobreescribe .seccion-alterna aquí
+   por especificidad de ID. */
+#historia-cicm-visual{
+    padding:var(--espacio-lg) 0;
+    background-color:#332C2E;
+    background-image:none;
+    border-top:none;
+    border-bottom:none;
+}
+
+.timeline{
+    position:relative;
+    max-width:760px;
+    margin:0 auto;
+    padding:1.5rem 1.5rem;
+}
+
+/* Línea central */
+
+.timeline::before{
+    content:"";
+    position:absolute;
+    top:1.5rem;
+    bottom:1.5rem;
+    left:50%;
+    transform:translateX(-50%);
+    width:4px;
+    border-radius:50px;
+
+    background:linear-gradient(
+        to bottom,
+        #4A1428 0%,
+        #631832 15%,
+        #7A1F3D 30%,
+        #96274C 45%,
+        #A94464 60%,
+        #C36C86 80%,
+        #DDB8C5 100%
+    );
+
+    box-shadow:0 0 10px rgba(122,31,61,.25);
+}
+
+/* Eventos */
+
+.timeline-item{
+    position:relative;
+    width:50%;
+    margin-bottom:1.1rem;
+}
+
+.timeline-item.izquierda{
+    left:0;
+    padding-right:30px;
+    text-align:right;
+}
+
+.timeline-item.derecha{
+    left:50%;
+    padding-left:30px;
+}
+
+/* Punto */
+
+.timeline-punto{
+
+    position:absolute;
+
+    top:15px;
+
+    width:14px;
+    height:14px;
+
+    border-radius:50%;
+    border:3px solid #332C2E;
+
+    z-index:20;
+
+    box-shadow:0 4px 10px rgba(0,0,0,.35);
+}
+
+/* Posición */
+
+.timeline-item.izquierda .timeline-punto{
+    right:-7px;
+}
+
+.timeline-item.derecha .timeline-punto{
+    left:-7px;
+}
+
+/* ===== Colores de cada punto ===== */
+
+.color-1{
+    background:linear-gradient(135deg,#4A1428,#631832);
+}
+
+.color-2{
+    background:linear-gradient(135deg,#631832,#7A1F3D);
+}
+
+.color-3{
+    background:linear-gradient(135deg,#7A1F3D,#96274C);
+}
+
+.color-4{
+    background:linear-gradient(135deg,#96274C,#A94464);
+}
+
+.color-5{
+    background:linear-gradient(135deg,#A94464,#C36C86);
+}
+
+.color-6{
+    background:linear-gradient(135deg,#C9A15A,#B88742);
+}
+
+.color-7{
+    background:linear-gradient(135deg,#7A1F3D,#4A1428);
+}
+
+/* Tarjetas */
+
+.timeline-card{
+
+    position:relative;
+    overflow:hidden;
+
+    background:#fff;
+
+    padding:.75rem .95rem;
+
+    border-radius:10px;
+
+    box-shadow:0 6px 14px rgba(0,0,0,.28);
+
+    transition:.35s;
+
+}
+
+/* Borde de color distinto */
+
+.timeline-item:nth-child(1) .timeline-card{
+    border-left:5px solid #4A1428;
+}
+
+.timeline-item:nth-child(2) .timeline-card{
+    border-left:5px solid #631832;
+}
+
+.timeline-item:nth-child(3) .timeline-card{
+    border-left:5px solid #7A1F3D;
+}
+
+.timeline-item:nth-child(4) .timeline-card{
+    border-left:5px solid #96274C;
+}
+
+.timeline-item:nth-child(5) .timeline-card{
+    border-left:5px solid #A94464;
+}
+
+.timeline-item:nth-child(6) .timeline-card{
+    border-left:5px solid #C9A15A;
+}
+
+.timeline-item:nth-child(7) .timeline-card{
+    border-left:5px solid #4A1428;
+}
+
+/* Brillo */
+
+.timeline-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    left:0;
+
+    width:6px;
+    height:100%;
+
+    background:linear-gradient(
+        to bottom,
+        transparent,
+        rgba(255,255,255,.4),
+        transparent
+    );
+
+    transition:.4s;
+}
+
+.timeline-card:hover::before{
+
+    width:100%;
+    opacity:.08;
+
+}
+
+.timeline-card:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:0 18px 40px rgba(61,15,31,.18);
+
+}
+
+/* Fecha */
+
+.timeline-fecha{
+
+    display:inline-block;
+
+    margin-bottom:.35rem;
+
+    padding:.2rem .6rem;
+
+    border-radius:30px;
+
+    background:linear-gradient(
+        135deg,
+        var(--color-primario),
+        var(--color-secundario)
+    );
+
+    color:#fff;
+
+    font-weight:700;
+
+    font-size:.68rem;
+
+}
+
+/* Título */
+
+.timeline-card h3{
+
+    margin-bottom:.3rem;
+
+    color:var(--color-titulo);
+
+    font-family:var(--fuente-titulos);
+
+    font-size:.95rem;
+
+}
+
+/* Texto */
+
+.timeline-card p{
+
+    margin:0;
+
+    line-height:1.4;
+
+    font-size:.8rem;
+
+    color:var(--color-texto);
+
+}
+
+/* Responsive */
+
+@media (max-width:900px){
+
+.timeline{
+
+    padding:1.2rem .9rem;
+
+}
+
+.timeline::before{
+
+    left:10px;
+
+}
+
+.timeline-item{
+
+    width:100%;
+
+    left:0 !important;
+
+    padding-left:28px;
+
+    padding-right:0;
+
+    text-align:left;
+
+}
+
+.timeline-punto{
+
+    left:3px !important;
+
+    right:auto;
+
+}
+
+}
+/* ============================================================
+EJES DEL PLAN NACIONAL ANTICORRUPCIÓN - solo layout del wrapper
+(el estilo de los cuadros .eje-cuadro y del panel .eje-panel vive
+por completo en acerca-de.css, que es el dueño de ese componente;
+aquí solo se define cómo se acomodan lado a lado)
+============================================================ */
+
+.ejes-wrapper{
+    display: flex;
+    align-items: flex-start;
+    gap: 45px;
+    margin-top: 2rem;
+}
+
+/* Descripción a la izquierda, cuadros de números a la derecha */
+.ejes-contenido{
+    order: 1;
+    flex: 1;
+}
+
+.menu-ejes-cuadros{
+    order: 2;
+    flex-shrink: 0;
+}
+
+/* Responsive: apilar en columna en pantallas angostas */
+@media (max-width:980px){
+
+    .ejes-wrapper{
+        flex-direction:column;
+    }
+
+    .menu-ejes-cuadros{
+        order: 1;
+        width:100%;
+    }
+
+    .ejes-contenido{
+        order: 2;
+    }
+
+}
