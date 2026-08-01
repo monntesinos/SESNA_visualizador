@@ -2,7 +2,6 @@
 CICM - Catálogo de Información sobre la Corrupción en México
 Punto de entrada de la aplicación Flask.
 """
-
 from flask import Flask, render_template
 
 app = Flask(__name__)
