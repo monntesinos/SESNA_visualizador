@@ -1,253 +1,172 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>CICM - Catálogo de Información sobre la Corrupción en México</title>
-	<meta name="description" content="Repositorio de variables especializado en compartir información sobre el fenómeno de la corrupción en México.">
+{% extends "base.html" %}
 
-	<!-- Tipografía compartida del sitio -->
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@500;600;700&display=swap" rel="stylesheet">
+{% block title %}CICM - Catálogo de Información sobre la Corrupción en México{% endblock %}
 
-	<!-- Estilos compartidos del sitio -->
-	<link rel="stylesheet" href="{{ url_for('static', filename='css/variables.css') }}">
-	<link rel="stylesheet" href="{{ url_for('static', filename='css/estilos-globales.css') }}">
-	<link rel="stylesheet" href="{{ url_for('static', filename='css/inicio.css') }}">
-	<link rel="stylesheet" href="{{ url_for('static', filename='css/acerca-de.css') }}">
-</head>
-<body>
+{% block meta_description %}
+<meta name="description" content="Repositorio de variables especializado en compartir información sobre el fenómeno de la corrupción en México.">
+{% endblock %}
 
-	<a class="skip-link" href="#contenido-principal">Saltar al contenido principal</a>
+{% block css_extra %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/inicio.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/acerca-de.css') }}">
+{% endblock %}
 
-	<!-- Barra institucional -->
-	<div class="barra-institucional">
+{% block content %}
+
+	<!-- Banner principal -->
+	<section class="banner">
 		<div class="container">
-			<img src="{{ url_for('static', filename='img/logo-sesna.png') }}" alt="Secretaría Ejecutiva del Sistema Nacional Anticorrupción (SESNA)" class="logo-sesna">
+			<h1>Catálogo de Información sobre la Corrupción en México <em>(CICM)</em></h1>
+			<p class="subtitulo">Repositorio de variables especializado en compartir información sobre el fenómeno de la corrupción en México.</p>
+			<a href="#acerca-de-cicm" class="boton">Acerca del CICM</a>
 		</div>
-	</div>
+	</section>
 
-	<!-- Encabezado principal -->
-	<header id="encabezado-principal">
+	<!-- Tríptico Acerca del CICM -->
+	<section id="acerca-de-cicm">
 		<div class="container">
-			<a href="{{ url_for('inicio') }}" class="logo-sitio">
-				CICM
-				<span>Catálogo de Información sobre la Corrupción en México</span>
-			</a>
-
-			<div class="encabezado-acciones">
-				<!-- Botón de búsqueda modificado para abrir el modal -->
-				<a href="{{ url_for('buscador_ciudadano') }}" class="boton-buscar" aria-label="Ir al buscador ciudadano">
-					<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-						<circle cx="11" cy="11" r="7"></circle>
-						<line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-					</svg>
-					<span class="buscar-texto">Buscar</span>
-				</a>
-
-				<button type="button" class="boton-menu-movil" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="menu-principal">
-					<span></span><span></span><span></span>
-				</button>
-
-				<!-- Menú de navegación (Sin la sección de búsqueda) -->
-				<nav id="menu-principal" aria-label="Menú principal">
-					<ul class="menu-nav">
-						<li><a href="{{ url_for('inicio') }}" aria-current="page">Inicio</a></li>
-						<li><a href="{{ url_for('preguntas_frecuentes') }}">Preguntas frecuentes</a></li>
-					    <li><a href="{{ url_for('contacto') }}">Contáctanos</a></li>
-				    </ul>
-			    </nav>
+			<p class="eyebrow"></p>
+			<h2>Acerca del CICM</h2>
+			<div class="triptico">
+				<div class="triptico-panel">
+					<h3>Objetivo</h3>
+					<p>Facilitar a la población y actores interesados el acceso a datos y variables sobre el fenómeno de la corrupción en México, así como a sus fuentes de información de forma ágil, ciudadana y transparente a través de la estandarización de los datos que se generan sobre la corrupción, la anticorrupción, integridad, fiscalización y control de los recursos públicos en México.</p>
+				</div>
+				<div class="triptico-panel">
+					<h3>Misión</h3>
+					<p>Contribuir a la socialización y reutilización de información generada en el país relacionada con el fenómeno de la corrupción y las medidas anticorrupción, a partir de una herramienta tecnológica amigable y accesible.</p>
+				</div>
+				<div class="triptico-panel">
+					<h3>Visión</h3>
+					<p>Ser la mejor plataforma de transparencia proactiva y consulta dinámica del fenómeno de la corrupción y de las acciones anticorrupción en México, que sirva de referencia para la sociedad civil, academia y gobiernos en la toma de decisiones, diagnósticos y consulta sobre los avances del Estado mexicano en temas de anticorrupción e integridad.</p>
+				</div>
 			</div>
 		</div>
-	</header>
+	</section>
 
-	<main id="contenido-principal">
-
-		<!-- Banner principal -->
-		<section class="banner">
-			<div class="container">
-				<h1>Catálogo de Información sobre la Corrupción en México <em>(CICM)</em></h1>
-				<p class="subtitulo">Repositorio de variables especializado en compartir información sobre el fenómeno de la corrupción en México.</p>
-				<a href="#acerca-de-cicm" class="boton">Acerca del CICM</a>
-			</div>
-		</section>
-
-		<!-- Tríptico Acerca del CICM -->
-		<section id="acerca-de-cicm">
-			<div class="container">
-				<p class="eyebrow"></p>
-				<h2>Acerca del CICM</h2>
-				<div class="triptico">
-					<div class="triptico-panel">
-						<h3>Objetivo</h3>
-						<p>Facilitar a la población y actores interesados el acceso a datos y variables sobre el fenómeno de la corrupción en México, así como a sus fuentes de información de forma ágil, ciudadana y transparente a través de la estandarización de los datos que se generan sobre la corrupción, la anticorrupción, integridad, fiscalización y control de los recursos públicos en México.</p>
-					</div>
-					<div class="triptico-panel">
-						<h3>Misión</h3>
-						<p>Contribuir a la socialización y reutilización de información generada en el país relacionada con el fenómeno de la corrupción y las medidas anticorrupción, a partir de una herramienta tecnológica amigable y accesible.</p>
-					</div>
-					<div class="triptico-panel">
-						<h3>Visión</h3>
-						<p>Ser la mejor plataforma de transparencia proactiva y consulta dinámica del fenómeno de la corrupción y de las acciones anticorrupción en México, que sirva de referencia para la sociedad civil, academia y gobiernos en la toma de decisiones, diagnósticos y consulta sobre los avances del Estado mexicano en temas de anticorrupción e integridad.</p>
-					</div>
-				</div>
-			</div>
-		</section>
-
-		<!-- Historia del CICM -->
-		<section id="historia-cicm-visual" class="seccion-alterna">
-			<div class="container">
-				<h2>Historia del CICM</h2>
-				<div class="timeline">
-					<article class="timeline-item izquierda">
-						<div class="timeline-punto"></div>
-						<div class="timeline-card">
-							<span class="timeline-fecha">Enero 2020</span>
-							<h3>Aprobación de la PNA</h3>
-							<p>Se aprueba oficialmente la Política Nacional Anticorrupción (PNA), que establece las bases para coordinar las acciones nacionales en materia de prevención y combate a la corrupción.</p>
-						</div>
-					</article>
-					<article class="timeline-item derecha">
-						<div class="timeline-punto"></div>
-						<div class="timeline-card">
-							<span class="timeline-fecha">2020</span>
-							<h3>Desarrollo metodológico</h3>
-							<p>Se desarrollan las propuestas metodológicas para evaluar los resultados e impactos derivados de la implementación de la PNA, así como el comportamiento del fenómeno de la corrupción en México a través del tiempo.</p>
-						</div>
-					</article>
-					<article class="timeline-item izquierda">
-						<div class="timeline-punto"></div>
-						<div class="timeline-card">
-							<span class="timeline-fecha">2020</span>
-							<h3>Inicio de la construcción del CICM</h3>
-							<p>La SESNA recibe la instrucción de iniciar el desarrollo de la herramienta, con base en el Cuarto Transitorio del Acuerdo por el cual el Comité Coordinador del Sistema Nacional Anticorrupción aprueba la Política Nacional Anticorrupción.</p>
-						</div>
-					</article>
-					<article class="timeline-item derecha">
-						<div class="timeline-punto"></div>
-						<div class="timeline-card">
-							<span class="timeline-fecha">6 de abril de 2020</span>
-							<h3>Primera versión del CICM</h3>
-							<p>La SESNA presenta la primera herramienta de consulta dinámica del CICM en formato Microsoft Excel con aproximadamente 600 variables.</p>
-						</div>
-					</article>
-					<article class="timeline-item izquierda">
-						<div class="timeline-punto"></div>
-						<div class="timeline-card">
-							<span class="timeline-fecha">Octubre 2020</span>
-							<h3>Ampliación del catálogo</h3>
-							<p>El Catálogo de Información sobre la Corrupción en México crece de 600 a 1,650 variables.</p>
-						</div>
-					</article>
-					<article class="timeline-item derecha">
-						<div class="timeline-punto"></div>
-						<div class="timeline-card">
-							<span class="timeline-fecha">2020</span>
-							<h3>Migración a plataforma web</h3>
-							<p>Gracias a un proyecto de cooperación internacional con la GIZ en México y la Agencia Mexicana de Cooperación Internacional para el Desarrollo, inicia la migración del CICM hacia una plataforma web con mayor capacidad y una interfaz de búsqueda más amigable.</p>
-						</div>
-					</article>
-					<article class="timeline-item izquierda">
-						<div class="timeline-punto"></div>
-						<div class="timeline-card">
-							<span class="timeline-fecha">29 de marzo de 2022</span>
-							<h3>Lanzamiento del CICM 2.0</h3>
-							<p>Se presenta oficialmente la versión 2.0 del Catálogo de Información sobre la Corrupción en México.</p>
-						</div>
-					</article>
-				</div>
-			</div>
-			<div class="timeline-punto color-1"></div>
-			<div class="timeline-punto color-2"></div>
-			<div class="timeline-punto color-3"></div>
-			<div class="timeline-punto color-4"></div>
-			<div class="timeline-punto color-5"></div>
-			<div class="timeline-punto color-6"></div>
-			<div class="timeline-punto color-7"></div>
-		</section>
-
-		<!-- Ejes del Plan Nacional Anticorrupción -->
-		<section id="ejes-pna">
-			<div class="container">
-				<h2>Ejes del Plan Nacional Anticorrupción</h2>
-				<p>Los procesos de coordinación de acciones de todos los entes públicos que integran el Estado mexicano y el involucramiento de los distintos sectores de la sociedad, se articulan en torno a cuatro ejes estratégicos que, en conjunto, integran las distintas dimensiones de la corrupción como un fenómeno sistémico.</p>
-				<div class="ejes-wrapper">
-					<div class="menu-ejes-cuadros" role="group" aria-label="Ejes del Plan Nacional Anticorrupción">
-						<button type="button" class="eje-cuadro eje-1 activo" data-eje="eje-1" aria-label="Eje 1. Corrupción e impunidad"><span class="eje-cuadro-numero">1</span></button>
-						<button type="button" class="eje-cuadro eje-2" data-eje="eje-2" aria-label="Eje 2. Arbitrariedad y el abuso de poder"><span class="eje-cuadro-numero">2</span></button>
-						<button type="button" class="eje-cuadro eje-3" data-eje="eje-3" aria-label="Eje 3. Mejora de la gestión y de puntos de contacto entre gobierno y sociedad"><span class="eje-cuadro-numero">3</span></button>
-						<button type="button" class="eje-cuadro eje-4" data-eje="eje-4" aria-label="Eje 4. Involucramiento social en el control de la corrupción"><span class="eje-cuadro-numero">4</span></button>
-					</div>
-					<div class="ejes-contenido">
-						<div id="eje-1" class="eje-panel eje-1 activo">
-							<h3>Eje 1. Combatir la corrupción y la impunidad</h3>
-							<ul>
-								<li>Prevención, detección, denuncia, investigación, substanciación y sanción de faltas administrativas.</li>
-								<li>Procuración e impartición de justicia en materia de delitos por hechos de corrupción.</li>
-							</ul>
-						</div>
-						<div id="eje-2" class="eje-panel eje-2">
-							<h3>Eje 2. Combatir la arbitrariedad y el abuso de poder</h3>
-							<ul>
-								<li>Profesionalización e integridad en el servicio público.</li>
-								<li>Procesos institucionales.</li>
-								<li>Auditoría y fiscalización.</li>
-							</ul>
-						</div>
-						<div id="eje-3" class="eje-panel eje-3">
-							<h3>Eje 3. Mejorar la gestión y los puntos de contacto gobierno-sociedad</h3>
-							<ul>
-								<li>Puntos de contacto gobierno-ciudadanía: trámites, servicios y programas públicos.</li>
-								<li>Puntos de contacto gobierno-iniciativa privada.</li>
-							</ul>
-						</div>
-						<div id="eje-4" class="eje-panel eje-4">
-							<h3>Eje 4. Involucrar a la sociedad y al sector privado</h3>
-							<ul>
-								<li>Participación ciudadana: vigilancia, colaboración y cocreación.</li>
-								<li>Corresponsabilidad e integridad empresarial.</li>
-								<li>Educación y comunicación para el control de la corrupción.</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-
-	</main>
-
-
-	<!-- Pie de página -->
-	<footer id="pie-pagina">
+	<!-- Historia del CICM -->
+	<section id="historia-cicm-visual" class="seccion-alterna">
 		<div class="container">
-			<div class="footer-contenido">
-				<div class="footer-institucional">
-					<h4>CICM</h4>
-					<p>Catálogo de Información sobre la Corrupción en México, una herramienta de la Secretaría Ejecutiva del Sistema Nacional Anticorrupción (SESNA).</p>
+			<h2>Historia del CICM</h2>
+			<div class="timeline">
+				<article class="timeline-item izquierda">
+					<div class="timeline-punto"></div>
+					<div class="timeline-card">
+						<span class="timeline-fecha">Enero 2020</span>
+						<h3>Aprobación de la PNA</h3>
+						<p>Se aprueba oficialmente la Política Nacional Anticorrupción (PNA), que establece las bases para coordinar las acciones nacionales en materia de prevención y combate a la corrupción.</p>
+					</div>
+				</article>
+				<article class="timeline-item derecha">
+					<div class="timeline-punto"></div>
+					<div class="timeline-card">
+						<span class="timeline-fecha">2020</span>
+						<h3>Desarrollo metodológico</h3>
+						<p>Se desarrollan las propuestas metodológicas para evaluar los resultados e impactos derivados de la implementación de la PNA, así como el comportamiento del fenómeno de la corrupción en México a través del tiempo.</p>
+					</div>
+				</article>
+				<article class="timeline-item izquierda">
+					<div class="timeline-punto"></div>
+					<div class="timeline-card">
+						<span class="timeline-fecha">2020</span>
+						<h3>Inicio de la construcción del CICM</h3>
+						<p>La SESNA recibe la instrucción de iniciar el desarrollo de la herramienta, con base en el Cuarto Transitorio del Acuerdo por el cual el Comité Coordinador del Sistema Nacional Anticorrupción aprueba la Política Nacional Anticorrupción.</p>
+					</div>
+				</article>
+				<article class="timeline-item derecha">
+					<div class="timeline-punto"></div>
+					<div class="timeline-card">
+						<span class="timeline-fecha">6 de abril de 2020</span>
+						<h3>Primera versión del CICM</h3>
+						<p>La SESNA presenta la primera herramienta de consulta dinámica del CICM en formato Microsoft Excel con aproximadamente 600 variables.</p>
+					</div>
+				</article>
+				<article class="timeline-item izquierda">
+					<div class="timeline-punto"></div>
+					<div class="timeline-card">
+						<span class="timeline-fecha">Octubre 2020</span>
+						<h3>Ampliación del catálogo</h3>
+						<p>El Catálogo de Información sobre la Corrupción en México crece de 600 a 1,650 variables.</p>
+					</div>
+				</article>
+				<article class="timeline-item derecha">
+					<div class="timeline-punto"></div>
+					<div class="timeline-card">
+						<span class="timeline-fecha">2020</span>
+						<h3>Migración a plataforma web</h3>
+						<p>Gracias a un proyecto de cooperación internacional con la GIZ en México y la Agencia Mexicana de Cooperación Internacional para el Desarrollo, inicia la migración del CICM hacia una plataforma web con mayor capacidad y una interfaz de búsqueda más amigable.</p>
+					</div>
+				</article>
+				<article class="timeline-item izquierda">
+					<div class="timeline-punto"></div>
+					<div class="timeline-card">
+						<span class="timeline-fecha">29 de marzo de 2022</span>
+						<h3>Lanzamiento del CICM 2.0</h3>
+						<p>Se presenta oficialmente la versión 2.0 del Catálogo de Información sobre la Corrupción en México.</p>
+					</div>
+				</article>
+			</div>
+		</div>
+		<div class="timeline-punto color-1"></div>
+		<div class="timeline-punto color-2"></div>
+		<div class="timeline-punto color-3"></div>
+		<div class="timeline-punto color-4"></div>
+		<div class="timeline-punto color-5"></div>
+		<div class="timeline-punto color-6"></div>
+		<div class="timeline-punto color-7"></div>
+	</section>
+
+	<!-- Ejes del Plan Nacional Anticorrupción -->
+	<section id="ejes-pna">
+		<div class="container">
+			<h2>Ejes del Plan Nacional Anticorrupción</h2>
+			<p>Los procesos de coordinación de acciones de todos los entes públicos que integran el Estado mexicano y el involucramiento de los distintos sectores de la sociedad, se articulan en torno a cuatro ejes estratégicos que, en conjunto, integran las distintas dimensiones de la corrupción como un fenómeno sistémico.</p>
+			<div class="ejes-wrapper">
+				<div class="menu-ejes-cuadros" role="group" aria-label="Ejes del Plan Nacional Anticorrupción">
+					<button type="button" class="eje-cuadro eje-1 activo" data-eje="eje-1" aria-label="Eje 1. Corrupción e impunidad"><span class="eje-cuadro-numero">1</span></button>
+					<button type="button" class="eje-cuadro eje-2" data-eje="eje-2" aria-label="Eje 2. Arbitrariedad y el abuso de poder"><span class="eje-cuadro-numero">2</span></button>
+					<button type="button" class="eje-cuadro eje-3" data-eje="eje-3" aria-label="Eje 3. Mejora de la gestión y de puntos de contacto entre gobierno y sociedad"><span class="eje-cuadro-numero">3</span></button>
+					<button type="button" class="eje-cuadro eje-4" data-eje="eje-4" aria-label="Eje 4. Involucramiento social en el control de la corrupción"><span class="eje-cuadro-numero">4</span></button>
 				</div>
-				<nav class="footer-enlaces" aria-label="Enlaces del pie de página">
-					<h4>Navegación</h4>
-					<ul>
-						<li><a href="{{ url_for('inicio') }}">Inicio</a></li>
-						<li><a href="{{ url_for('preguntas_frecuentes') }}">Preguntas frecuentes</a></li>
-						<li><a href="{{ url_for('contacto') }}">Contáctanos</a></li>
-					</ul>
-				</nav>
-				<div class="footer-sesna">
-					<h4>Más información</h4>
-					<ul class="footer-enlaces">
-						<li><a href="https://www.sesna.gob.mx" target="_blank" rel="noopener">Sitio de la SESNA</a></li>
-						<li><a href="http://sna.org.mx" target="_blank" rel="noopener">Sistema Nacional Anticorrupción</a></li>
-					</ul>
+				<div class="ejes-contenido">
+					<div id="eje-1" class="eje-panel eje-1 activo">
+						<h3>Eje 1. Combatir la corrupción y la impunidad</h3>
+						<ul>
+							<li>Prevención, detección, denuncia, investigación, substanciación y sanción de faltas administrativas.</li>
+							<li>Procuración e impartición de justicia en materia de delitos por hechos de corrupción.</li>
+						</ul>
+					</div>
+					<div id="eje-2" class="eje-panel eje-2">
+						<h3>Eje 2. Combatir la arbitrariedad y el abuso de poder</h3>
+						<ul>
+							<li>Profesionalización e integridad en el servicio público.</li>
+							<li>Procesos institucionales.</li>
+							<li>Auditoría y fiscalización.</li>
+						</ul>
+					</div>
+					<div id="eje-3" class="eje-panel eje-3">
+						<h3>Eje 3. Mejorar la gestión y los puntos de contacto gobierno-sociedad</h3>
+						<ul>
+							<li>Puntos de contacto gobierno-ciudadanía: trámites, servicios y programas públicos.</li>
+							<li>Puntos de contacto gobierno-iniciativa privada.</li>
+						</ul>
+					</div>
+					<div id="eje-4" class="eje-panel eje-4">
+						<h3>Eje 4. Involucrar a la sociedad y al sector privado</h3>
+						<ul>
+							<li>Participación ciudadana: vigilancia, colaboración y cocreación.</li>
+							<li>Corresponsabilidad e integridad empresarial.</li>
+							<li>Educación y comunicación para el control de la corrupción.</li>
+						</ul>
+					</div>
 				</div>
 			</div>
-			<p class="footer-derechos">&copy; 2026 CICM - SESNA. Todos los derechos reservados.</p>
 		</div>
-	</footer>
+	</section>
 
-	<script src="{{ url_for('static', filename='js/navegacion.js') }}"></script>
-	<script src="{{ url_for('static', filename='js/inicio.js') }}"></script>
-	<script src="{{ url_for('static', filename='js/acerca-de.js') }}"></script>
-</body>
-</html>
+{% endblock %}
+
+{% block js_extra %}
+<script src="{{ url_for('static', filename='js/inicio.js') }}"></script>
+<script src="{{ url_for('static', filename='js/acerca-de.js') }}"></script>
+{% endblock %}

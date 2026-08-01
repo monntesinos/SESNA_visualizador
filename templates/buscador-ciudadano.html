@@ -1,265 +1,183 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Buscador ciudadano - CICM</title>
-	<meta name="robots" content="noindex">
+{% extends "base.html" %}
 
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@500;600;700&display=swap" rel="stylesheet">
+{% block title %}Buscador ciudadano - CICM{% endblock %}
 
-	<link rel="stylesheet" href="{{ url_for('static', filename='css/variables.css') }}">
-	<link rel="stylesheet" href="{{ url_for('static', filename='css/estilos-globales.css') }}">
-	<link rel="stylesheet" href="{{ url_for('static', filename='css/busqueda.css') }}">
-</head>
-<body>
+{% block meta_robots %}
+<meta name="robots" content="noindex">
+{% endblock %}
 
-	<a class="skip-link" href="#contenido-principal">Saltar al contenido principal</a>
+{% block css_extra %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/busqueda.css') }}">
+{% endblock %}
 
-	<!-- Barra institucional -->
-	<div class="barra-institucional">
+{% block content %}
+
+	<!-- Banner principal -->
+	<section class="banner">
 		<div class="container">
-			<img src="{{ url_for('static', filename='img/logo-sesna.png') }}" alt="Secretaría Ejecutiva del Sistema Nacional Anticorrupción (SESNA)" class="logo-sesna">
+			<h1>Buscador ciudadano</h1>
+			<p class="subtitulo">Una herramienta de consulta pensada para la ciudadanía, simple y accesible.</p>
 		</div>
-	</div>
+	</section>
 
-	<!-- Encabezado principal -->
-	<header id="encabezado-principal">
+	<!-- Sección del Buscador -->
+	<section id="seccion-busqueda" class="seccion-alterna">
 		<div class="container">
-			<a href="{{ url_for('inicio') }}" class="logo-sitio">
-				CICM
-				<span>Catálogo de Información sobre la Corrupción en México</span>
-			</a>
 
-			<div class="encabezado-acciones">
-				<a href="{{ url_for('buscador_ciudadano') }}" class="boton-buscar" aria-label="Ir directamente al buscador ciudadano">
-					<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-						<circle cx="11" cy="11" r="7"></circle>
-						<line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-					</svg>
-					<span class="buscar-texto">Buscar</span>
-				</a>
-
-				<button type="button" class="boton-menu-movil" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="menu-principal">
-					<span></span><span></span><span></span>
-				</button>
-
-				<!-- Menú de navegación -->
-				<nav id="menu-principal" aria-label="Menú principal">
-					<ul class="menu-nav">
-						<li><a href="{{ url_for('inicio') }}">Inicio</a></li>
-						<li><a href="{{ url_for('preguntas_frecuentes') }}">Preguntas frecuentes</a></li>
-						<li><a href="{{ url_for('contacto') }}">Contáctanos</a></li>
-				</ul>
-			</nav>
+			<!-- 1. Barra de Búsqueda Superior -->
+			<div class="busqueda-superior">
+				<form action="{{ url_for('buscador_ciudadano') }}" method="GET" class="formulario-principal">
+					<input type="text" id="busqueda-texto" name="q" placeholder="Escribe el nombre de la variable, ej. presupuesto, auditoría..." class="input-busqueda-grande">
+					<button type="submit" class="boton boton-primario">Buscar</button>
+				</form>
 			</div>
-		</div>
-	</header>
 
-	<main id="contenido-principal">
+			<!-- 2. Contenedor de Layout (Panel a la izquierda, Tabla a la derecha) -->
+			<div class="layout-catalogo">
 
-		<!-- Banner principal -->
-		<section class="banner">
-			<div class="container">
-				<h1>Buscador ciudadano</h1>
-				<p class="subtitulo">Una herramienta de consulta pensada para la ciudadanía, simple y accesible.</p>
-			</div>
-		</section>
+				<!-- COLUMNA IZQUIERDA: Filtros -->
+				<aside class="panel-filtros">
+					<h3 class="titulo-filtros">Filtros Disponibles</h3>
 
-		<!-- Aviso de sección en desarrollo -->
-		<!-- Sección del Buscador -->
-<!-- Sección del Buscador Avanzado -->
-<section id="seccion-busqueda" class="seccion-alterna">
-	<div class="container">
-		
-		<!-- 1. Barra de Búsqueda Superior -->
-		<div class="busqueda-superior">
-			<form action="{{ url_for('buscador_ciudadano') }}" method="GET" class="formulario-principal">
-				<input type="text" id="busqueda-texto" name="q" placeholder="Escribe el nombre de la variable, ej. presupuesto, auditoría..." class="input-busqueda-grande">
-				<button type="submit" class="boton boton-primario">Buscar</button>
-			</form>
-		</div>
-
-		<!-- 2. Contenedor de Layout (Panel a la izquierda, Tabla a la derecha) -->
-		<div class="layout-catalogo">
-			
-			<!-- COLUMNA IZQUIERDA: Filtros -->
-			<aside class="panel-filtros">
-				<h3 class="titulo-filtros">Filtros Disponibles</h3>
-				
-					<form id="formulario-filtros">
-						<!-- Filtro EJE -->
-						<div class="grupo-filtro">
-							<label for="filtro-eje">Eje</label>
-							<select id="filtro-eje" name="eje" class="input-select">
-								<option value="">Todos los Ejes</option>
-								<option value="1">1. Combate a la corrupción</option>
-								<option value="2">2. Transparencia</option>
-							</select>
-						</div>
-
-						<!-- Filtro TEMA -->
-						<div class="grupo-filtro">
-							<label for="filtro-tema">Tema</label>
-							<select id="filtro-tema" name="tema" class="input-select">
-								<option value="">Todos los Temas</option>
-								<option value="gestion">Gestión Pública</option>
-								<option value="impunidad">Impunidad</option>
-							</select>
-						</div>
-
-						<!-- Filtro AÑO -->
-						<div class="grupo-filtro">
-							<label for="filtro-ano">Año</label>
-							<select id="filtro-ano" name="ano" class="input-select">
-								<option value="">Todos los años</option>
-								<option value="2026">2026</option>
-								<option value="2025">2025</option>
-							</select>
-						</div>
-
-						<!-- Filtro NIVEL DE GOBIERNO (Botones de opción) -->
-						<div class="grupo-filtro">
-							<label>Nivel de Gobierno</label>
-							<div class="opciones-radio">
-								<label><input type="radio" name="nivel_gobierno" value="todos" checked> Todos</label>
-								<label><input type="radio" name="nivel_gobierno" value="federal"> Federal</label>
-								<label><input type="radio" name="nivel_gobierno" value="estatal"> Estatal / Municipal</label>
+						<form id="formulario-filtros">
+							<!-- Filtro EJE -->
+							<div class="grupo-filtro">
+								<label for="filtro-eje">Eje</label>
+								<select id="filtro-eje" name="eje" class="input-select">
+									<option value="">Todos los Ejes</option>
+									<option value="1">1. Combate a la corrupción</option>
+									<option value="2">2. Transparencia</option>
+								</select>
 							</div>
-						</div>
 
-						<!-- Filtro ENTIDAD FEDERATIVA (Oculto por defecto) -->
-						<div class="grupo-filtro oculto" id="contenedor-estado">
-							<label for="filtro-estado">Entidad Federativa</label>
-							<select id="filtro-estado" name="estado" class="input-select">
-								<option value="">Selecciona un Estado...</option>
-								<option value="aguascalientes">Aguascalientes</option>
-								<option value="baja_california">Baja California</option>
-								<option value="baja_california_sur">Baja California Sur</option>
-								<option value="campeche">Campeche</option>
-								<option value="chiapas">Chiapas</option>
-								<option value="chihuahua">Chihuahua</option>
-								<option value="ciudad_de_mexico">Ciudad de México</option>
-								<option value="coahuila">Coahuila</option>
-								<option value="colima">Colima</option>
-								<option value="durango">Durango</option>
-								<option value="estado_de_mexico">Estado de México</option>
-								<option value="guanajuato">Guanajuato</option>
-								<option value="guerrero">Guerrero</option>
-								<option value="hidalgo">Hidalgo</option>
-								<option value="jalisco">Jalisco</option>
-								<option value="michoacan">Michoacán</option>
-								<option value="morelos">Morelos</option>
-								<option value="nayarit">Nayarit</option>
-								<option value="nuevo_leon">Nuevo León</option>
-								<option value="oaxaca">Oaxaca</option>
-								<option value="puebla">Puebla</option>
-								<option value="queretaro">Querétaro</option>
-								<option value="quintana_roo">Quintana Roo</option>
-								<option value="san_luis_potosi">San Luis Potosí</option>
-								<option value="sinaloa">Sinaloa</option>
-								<option value="sonora">Sonora</option>
-								<option value="tabasco">Tabasco</option>
-								<option value="tamaulipas">Tamaulipas</option>
-								<option value="tlaxcala">Tlaxcala</option>
-								<option value="veracruz">Veracruz</option>
-								<option value="yucatan">Yucatán</option>
-								<option value="zacatecas">Zacatecas</option>
-							</select>
-						</div>
+							<!-- Filtro TEMA -->
+							<div class="grupo-filtro">
+								<label for="filtro-tema">Tema</label>
+								<select id="filtro-tema" name="tema" class="input-select">
+									<option value="">Todos los Temas</option>
+									<option value="gestion">Gestión Pública</option>
+									<option value="impunidad">Impunidad</option>
+								</select>
+							</div>
 
-						<!-- Filtro MUNICIPIO (Oculto por defecto) -->
-						<div class="grupo-filtro oculto" id="contenedor-municipio">
-							<label for="filtro-municipio">Municipio</label>
-							<select id="filtro-municipio" name="municipio" class="input-select">
-								<option value="">Todos los Municipios</option>
-								<!-- Aquí luego llenaremos con base de datos, por ahora lo dejamos genérico -->
-							</select>
-						</div>
-					</form>
-			</aside>
+							<!-- Filtro AÑO -->
+							<div class="grupo-filtro">
+								<label for="filtro-ano">Año</label>
+								<select id="filtro-ano" name="ano" class="input-select">
+									<option value="">Todos los años</option>
+									<option value="2026">2026</option>
+									<option value="2025">2025</option>
+								</select>
+							</div>
 
-			<!-- COLUMNA DERECHA: Tabla de Resultados -->
-			<section class="panel-resultados">
-				<div class="encabezado-resultados">
-					<h3>Explora el Catálogo</h3>
-					<span class="contador-resultados">Mostrando variables de ejemplo</span>
-				</div>
+							<!-- Filtro NIVEL DE GOBIERNO (Botones de opción) -->
+							<div class="grupo-filtro">
+								<label>Nivel de Gobierno</label>
+								<div class="opciones-radio">
+									<label><input type="radio" name="nivel_gobierno" value="todos" checked> Todos</label>
+									<label><input type="radio" name="nivel_gobierno" value="federal"> Federal</label>
+									<label><input type="radio" name="nivel_gobierno" value="estatal"> Estatal / Municipal</label>
+								</div>
+							</div>
 
-				<div class="contenedor-tabla">
-					<table class="tabla-ciudadana">
-						<thead>
-							<tr>
-								<th>ID</th>
-								<th>Nombre de la Variable</th>
-								<th>Nivel</th>
-								<th>Institución</th>
-								<th>Acción</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>01</td>
-								<td>Presupuesto asignado a OIC</td>
-								<td>Federal</td>
-								<td>ASF</td>
-								<td><button class="boton-ver">Ver detalle</button></td>
-							</tr>
-							<tr>
-								<td>02</td>
-								<td>Auditorías concluidas</td>
-								<td>Estatal</td>
-								<td>SESNA</td>
-								<td><button class="boton-ver">Ver detalle</button></td>
-							</tr>
-							<tr>
-								<td>03</td>
-								<td>Avance de contrataciones</td>
-								<td>Federal</td>
-								<td>SFP</td>
-								<td><button class="boton-ver">Ver detalle</button></td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-			</section>
+							<!-- Filtro ENTIDAD FEDERATIVA (Oculto por defecto) -->
+							<div class="grupo-filtro oculto" id="contenedor-estado">
+								<label for="filtro-estado">Entidad Federativa</label>
+								<select id="filtro-estado" name="estado" class="input-select">
+									<option value="">Selecciona un Estado...</option>
+									<option value="aguascalientes">Aguascalientes</option>
+									<option value="baja_california">Baja California</option>
+									<option value="baja_california_sur">Baja California Sur</option>
+									<option value="campeche">Campeche</option>
+									<option value="chiapas">Chiapas</option>
+									<option value="chihuahua">Chihuahua</option>
+									<option value="ciudad_de_mexico">Ciudad de México</option>
+									<option value="coahuila">Coahuila</option>
+									<option value="colima">Colima</option>
+									<option value="durango">Durango</option>
+									<option value="estado_de_mexico">Estado de México</option>
+									<option value="guanajuato">Guanajuato</option>
+									<option value="guerrero">Guerrero</option>
+									<option value="hidalgo">Hidalgo</option>
+									<option value="jalisco">Jalisco</option>
+									<option value="michoacan">Michoacán</option>
+									<option value="morelos">Morelos</option>
+									<option value="nayarit">Nayarit</option>
+									<option value="nuevo_leon">Nuevo León</option>
+									<option value="oaxaca">Oaxaca</option>
+									<option value="puebla">Puebla</option>
+									<option value="queretaro">Querétaro</option>
+									<option value="quintana_roo">Quintana Roo</option>
+									<option value="san_luis_potosi">San Luis Potosí</option>
+									<option value="sinaloa">Sinaloa</option>
+									<option value="sonora">Sonora</option>
+									<option value="tabasco">Tabasco</option>
+									<option value="tamaulipas">Tamaulipas</option>
+									<option value="tlaxcala">Tlaxcala</option>
+									<option value="veracruz">Veracruz</option>
+									<option value="yucatan">Yucatán</option>
+									<option value="zacatecas">Zacatecas</option>
+								</select>
+							</div>
 
-		</div>
-	</div>
-</section>
+							<!-- Filtro MUNICIPIO (Oculto por defecto) -->
+							<div class="grupo-filtro oculto" id="contenedor-municipio">
+								<label for="filtro-municipio">Municipio</label>
+								<select id="filtro-municipio" name="municipio" class="input-select">
+									<option value="">Todos los Municipios</option>
+									<!-- Aquí luego llenaremos con base de datos, por ahora lo dejamos genérico -->
+								</select>
+							</div>
+						</form>
+				</aside>
 
-	</main>
+				<!-- COLUMNA DERECHA: Tabla de Resultados -->
+				<section class="panel-resultados">
+					<div class="encabezado-resultados">
+						<h3>Explora el Catálogo</h3>
+						<span class="contador-resultados">Mostrando variables de ejemplo</span>
+					</div>
 
-	<!-- Pie de página -->
-	<footer id="pie-pagina">
-		<div class="container">
-			<div class="footer-contenido">
-				<div class="footer-institucional">
-					<h4>CICM</h4>
-					<p>Catálogo de Información sobre la Corrupción en México, una herramienta de la Secretaría Ejecutiva del Sistema Nacional Anticorrupción (SESNA).</p>
-				</div>
-				<nav class="footer-enlaces" aria-label="Enlaces del pie de página">
-					<h4>Navegación</h4>
-					<ul>
-						<li><a href="{{ url_for('inicio') }}">Inicio</a></li>
-						<li><a href="{{ url_for('preguntas_frecuentes') }}">Preguntas frecuentes</a></li>
-						<li><a href="{{ url_for('contacto') }}">Contáctanos</a></li>
-					</ul>
-				</nav>
-				<div class="footer-sesna">
-					<h4>Más información</h4>
-					<ul class="footer-enlaces">
-						<li><a href="https://www.sesna.gob.mx" target="_blank" rel="noopener">Sitio de la SESNA</a></li>
-						<li><a href="http://sna.org.mx" target="_blank" rel="noopener">Sistema Nacional Anticorrupción</a></li>
-					</ul>
-				</div>
+					<div class="contenedor-tabla">
+						<table class="tabla-ciudadana">
+							<thead>
+								<tr>
+									<th>ID</th>
+									<th>Nombre de la Variable</th>
+									<th>Nivel</th>
+									<th>Institución</th>
+									<th>Acción</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>01</td>
+									<td>Presupuesto asignado a OIC</td>
+									<td>Federal</td>
+									<td>ASF</td>
+									<td><button class="boton-ver">Ver detalle</button></td>
+								</tr>
+								<tr>
+									<td>02</td>
+									<td>Auditorías concluidas</td>
+									<td>Estatal</td>
+									<td>SESNA</td>
+									<td><button class="boton-ver">Ver detalle</button></td>
+								</tr>
+								<tr>
+									<td>03</td>
+									<td>Avance de contrataciones</td>
+									<td>Federal</td>
+									<td>SFP</td>
+									<td><button class="boton-ver">Ver detalle</button></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</section>
+
 			</div>
-			<p class="footer-derechos">&copy; 2026 CICM - SESNA. Todos los derechos reservados.</p>
 		</div>
-	</footer>
+	</section>
 
-	<script src="{{ url_for('static', filename='js/navegacion.js') }}"></script>
-</body>
-</html>
+{% endblock %}
