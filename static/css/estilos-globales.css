@@ -235,25 +235,24 @@ header#encabezado-principal .container {
 }
 
 /* Enlace directo de búsqueda en el encabezado */
+/* Estilo base: transparente y sin color de fondo */
 .boton-buscar {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  background-color: var(--color-primario);
-  color: var(--color-blanco);
-  font-size: var(--texto-sm);
-  font-weight: 600;
-  padding: 0.55rem 1rem;
-  border-radius: 999px;
-  box-shadow: var(--sombra-suave);
-  transition: background-color var(--transicion), transform var(--transicion), box-shadow var(--transicion);
+    background-color: transparent; /* Sin color inicialmente */
+    color: var(--color-texto, #333); /* El color del ícono y la palabra "Buscar" en estado normal */
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Espacio entre la lupa y el texto */
+    padding: 8px 16px;
+    border-radius: 4px; /* Opcional: bordes ligeramente redondeados */
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Hace que el cambio de color se vea suave */
 }
 
+/* Estilo hover: al pasar el mouse se ilumina */
 .boton-buscar:hover {
-  background-color: var(--color-primario-oscuro);
-  color: var(--color-blanco);
-  transform: translateY(-1px);
-  box-shadow: var(--sombra-tarjeta);
+    /* Aquí pones la variable del color principal de tu página o el código HEX directo */
+    background-color: var(--color-primario, #8B0000); /* Reemplaza #8B0000 por el color institucional exacto que uses */
+    color: #ffffff; /* Cambia el texto y la lupa a blanco para que resalte sobre el color de fondo */
 }
 
 .boton-buscar svg {
@@ -593,4 +592,83 @@ footer#pie-pagina .footer-derechos {
 
 .banner .boton {
   margin-top: var(--espacio-sm);
+}
+
+/* --- Efecto del botón de buscar --- */
+.boton-buscar {
+    background-color: transparent;
+    color: var(--color-texto, #333);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.boton-buscar:hover {
+    background-color: var(--color-primario, #8B0000); /* Cambia al color de tu página */
+    color: #ffffff;
+}
+
+/* --- Estilos del Modal del Buscador --- */
+.modal-oculto {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-activo {
+    display: flex;
+}
+
+.modal-contenido {
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 8px;
+    max-width: 600px;
+    width: 90%;
+    position: relative;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    text-align: center;
+}
+
+.btn-cerrar {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: transparent;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #666;
+}
+
+.btn-cerrar:hover {
+    color: #000;
+}
+
+.modal-header h2 {
+    margin-top: 0;
+    color: var(--color-primario, #333);
+}
+
+.modal-body .tarjeta-proximamente {
+    margin-top: 1.5rem;
+    padding: 1.5rem;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 6px;
 }

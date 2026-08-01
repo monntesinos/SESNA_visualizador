@@ -27,3 +27,32 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 	});
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    const btnAbrir = document.getElementById('btn-abrir-buscador');
+    const modal = document.getElementById('modal-buscador');
+    const btnCerrar = document.getElementById('btn-cerrar-buscador');
+
+    if(btnAbrir && modal && btnCerrar) {
+        // Abrir modal
+        btnAbrir.addEventListener('click', (e) => {
+            e.preventDefault();
+            modal.classList.add('modal-activo');
+            modal.setAttribute('aria-hidden', 'false');
+        });
+
+        // Cerrar modal desde la X
+        btnCerrar.addEventListener('click', () => {
+            modal.classList.remove('modal-activo');
+            modal.setAttribute('aria-hidden', 'true');
+        });
+
+        // Cerrar modal al hacer clic en el fondo gris
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('modal-activo');
+                modal.setAttribute('aria-hidden', 'true');
+            }
+        });
+    }
+});

@@ -21,3 +21,147 @@
 .tarjeta-proximamente .boton {
 	margin-top: var(--espacio-sm);
 }
+
+/* --- Diseño general del Catálogo --- */
+.busqueda-superior {
+    margin-bottom: 30px;
+    background-color: #f4f6f8;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.formulario-principal {
+    display: flex;
+    gap: 15px;
+}
+
+.input-busqueda-grande {
+    flex: 1;
+    padding: 15px;
+    font-size: 1.1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+/* --- Layout de Panel Lateral --- */
+.layout-catalogo {
+    display: grid;
+    grid-template-columns: 280px 1fr; /* Columna izq de 280px, la derecha toma el resto */
+    gap: 30px;
+    align-items: start;
+}
+
+/* --- Panel de Filtros --- */
+.panel-filtros {
+    background: #ffffff;
+    padding: 20px;
+    border: 1px solid #eaeaea;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.titulo-filtros {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--color-primario, #8B0000);
+    padding-bottom: 10px;
+}
+
+.grupo-filtro {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.grupo-filtro label {
+    font-weight: 600;
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+}
+
+.input-select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+}
+
+/* Clase para ocultar elementos dinámicamente */
+.oculto {
+    display: none;
+}
+
+/* --- Tabla de Resultados --- */
+.encabezado-resultados {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.contenedor-tabla {
+    overflow-x: auto; /* Permite scroll horizontal si la pantalla es pequeña */
+    border: 1px solid #eaeaea;
+    border-radius: 8px;
+}
+
+.tabla-ciudadana {
+    width: 100%;
+    border-collapse: collapse;
+    background: #ffffff;
+}
+
+.tabla-ciudadana th, .tabla-ciudadana td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #eaeaea;
+}
+
+.tabla-ciudadana th {
+    background-color: #f4f6f8;
+    font-weight: 600;
+    color: #333;
+}
+
+.tabla-ciudadana tbody tr:hover {
+    background-color: #f9f9f9;
+}
+
+.boton-ver {
+    background-color: transparent;
+    color: var(--color-primario, #8B0000);
+    border: 1px solid var(--color-primario, #8B0000);
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.boton-ver:hover {
+    background-color: var(--color-primario, #8B0000);
+    color: white;
+}
+
+/* Responsive para celulares */
+@media (max-width: 768px) {
+    .layout-catalogo {
+        grid-template-columns: 1fr; /* Apila los filtros arriba de la tabla */
+    }
+}
+
+/* Estilos para los botones de nivel de gobierno */
+.opciones-radio {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 5px;
+}
+
+.opciones-radio label {
+    font-weight: normal;
+    cursor: pointer;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Espacio entre el circulito y el texto */
+}

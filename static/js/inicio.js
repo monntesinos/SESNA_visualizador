@@ -42,3 +42,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	observador.observe(numero);
 });
+
+// BORRA TODO ESTO (era el código viejo)
+document.addEventListener('DOMContentLoaded', function() {
+    const filtroEstado = document.getElementById('filtro-estado');
+    const contenedorMunicipio = document.getElementById('contenedor-municipio');
+
+    if (filtroEstado && contenedorMunicipio) {
+        filtroEstado.addEventListener('change', function() {
+            if (this.value !== "") {
+                contenedorMunicipio.classList.remove('oculto');
+            } else {
+                contenedorMunicipio.classList.add('oculto');
+            }
+        });
+    }
+});
