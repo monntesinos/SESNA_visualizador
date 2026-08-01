@@ -39,17 +39,19 @@
 				<aside class="panel-filtros">
 					<h3 class="titulo-filtros">Filtros Disponibles</h3>
 
-						<form id="formulario-filtros">
+						<form id="formulario-filtros" action="{{ url_for('buscador_ciudadano') }}" method="GET">
 							<!-- Filtro EJE -->
+							<!-- Filtro EJE Corregido -->
 							<div class="grupo-filtro">
 								<label for="filtro-eje">Eje</label>
 								<select id="filtro-eje" name="eje" class="input-select">
 									<option value="">Todos los Ejes</option>
-									<option value="1">1. Combate a la corrupción</option>
-									<option value="2">2. Transparencia</option>
+									<option value="1. Combatir la corrupción y la impunidad">1. Combatir la corrupción y la impunidad</option>
+									<option value="2. Combatir la arbitrariedad y el abuso de poder">2. Combatir la arbitrariedad y el abuso de poder</option>
+									<option value="3. Promover la mejora de la gestión y los puntos de contacto gobierno-sociedad">3. Promover la mejora de la gestión y los puntos de contacto gobierno-sociedad</option>
+									<option value="4. Involucrar a la sociedad y el sector privado">4. Involucrar a la sociedad y el sector privado</option>
 								</select>
 							</div>
-
 							<!-- Filtro TEMA -->
 							<div class="grupo-filtro">
 								<label for="filtro-tema">Tema</label>
@@ -128,6 +130,7 @@
 									<!-- Aquí luego llenaremos con base de datos, por ahora lo dejamos genérico -->
 								</select>
 							</div>
+							<button type="submit" class="boton boton-primario" style="width: 100%; margin-top: 15px;">Aplicar filtros</button>
 						</form>
 				</aside>
 
@@ -135,44 +138,63 @@
 				<section class="panel-resultados">
 					<div class="encabezado-resultados">
 						<h3>Explora el Catálogo</h3>
-						<span class="contador-resultados">Mostrando variables de ejemplo</span>
+						<span class="contador-resultados">Variables Disponibles</span>
 					</div>
 
 					<div class="contenedor-tabla">
 						<table class="tabla-ciudadana">
 							<thead>
 								<tr>
-									<th>ID</th>
 									<th>Nombre de la Variable</th>
-									<th>Nivel</th>
+									<th>Eje</th>
 									<th>Institución</th>
+									<th>Valor</th>
 									<th>Acción</th>
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td>01</td>
-									<td>Presupuesto asignado a OIC</td>
-									<td>Federal</td>
-									<td>ASF</td>
-									<td><button class="boton-ver">Ver detalle</button></td>
-								</tr>
-								<tr>
-									<td>02</td>
-									<td>Auditorías concluidas</td>
-									<td>Estatal</td>
-									<td>SESNA</td>
-									<td><button class="boton-ver">Ver detalle</button></td>
-								</tr>
-								<tr>
-									<td>03</td>
-									<td>Avance de contrataciones</td>
-									<td>Federal</td>
-									<td>SFP</td>
-									<td><button class="boton-ver">Ver detalle</button></td>
-								</tr>
+								<!-- Iniciamos el ciclo para leer lo que mandó Flask -->
+								{% if variables_supabase %}
+									{% for fila in variables_supabase %}
+									<tr>
+										<!-- Insertamos los datos en el orden exacto que pediste -->
+										<td>{{ fila.nombre }}</td>
+										<td>{{fila.eje}}</td>
+										<td>{{ fila.institucion }}</td>
+										<td>{{ fila.valor }}</td>
+										<td><button class="boton-ver">Ver detalle</button></td>
+									</tr>
+									{% endfor %}
+								{% else %}
+									<tr>
+										<td colspan="4" style="text-align: center;">No hay variables registradas o hubo un error.</td>
+									</tr>
+								{% endif %}
 							</tbody>
 						</table>
+					</div>
+					<!-- Controles de Paginación -->
+					<div class="paginacion" style="display: flex; justify-content: center; align-items: center; margin-top: 20px; gap: 15px;">
+						
+						<!-- Botón Anterior -->
+						{% if page > 1 %}
+							<a href="{{ url_for('buscador_ciudadano', page=page-1) }}" class="boton boton-primario">Anterior</a>
+						{% else %}
+							<button class="boton boton-primario" disabled style="opacity: 0.5; cursor: not-allowed;">Anterior</button>
+						{% endif %}
+						
+						<!-- Indicador de página -->
+						<span style="font-weight: bold; color: var(--color-texto);">
+							Página {{ page }} de {{ total_pages }}
+						</span>
+						
+						<!-- Botón Siguiente -->
+						{% if page < total_pages %}
+							<a href="{{ url_for('buscador_ciudadano', page=page+1) }}" class="boton boton-primario">Siguiente</a>
+						{% else %}
+							<button class="boton boton-primario" disabled style="opacity: 0.5; cursor: not-allowed;">Siguiente</button>
+						{% endif %}
+
 					</div>
 				</section>
 
