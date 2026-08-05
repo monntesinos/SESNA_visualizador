@@ -29,7 +29,7 @@
 	</div>
 
 	<!-- Encabezado principal -->
-	<header id="encabezado-principal">
+	<header id="encabezado-principal" class="{% if pagina_activa in ['buscador-ciudadano', 'busqueda-avanzada'] %}header-no-sticky{% endif %}">
 		<div class="container">
 			<a href="{{ url_for('inicio') }}" class="logo-sitio">
 				CICM

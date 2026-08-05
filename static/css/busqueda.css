@@ -43,6 +43,44 @@
     border-radius: 6px;
 }
 
+/* --- Autocompletado de la barra de búsqueda --- */
+.contenedor-autocompletado {
+    position: relative;
+    flex: 1;
+}
+
+.contenedor-autocompletado .input-busqueda-grande {
+    width: 100%;
+}
+
+.lista-sugerencias {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    right: 0;
+    background: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+    max-height: 280px;
+    overflow-y: auto;
+    z-index: 50;
+    list-style: none;
+    margin: 0;
+    padding: 4px 0;
+}
+
+.lista-sugerencias li {
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 0.95rem;
+}
+
+.lista-sugerencias li:hover,
+.lista-sugerencias li.resaltado {
+    background-color: #f4f6f8;
+}
+
 /* --- Layout de Panel Lateral --- */
 .layout-catalogo {
     display: grid;
@@ -91,22 +129,112 @@
     display: none;
 }
 
+/* --- Panel de Resultados (misma tarjeta que panel-filtros, para armonía visual) --- */
+.panel-resultados {
+    background: #ffffff;
+    padding: 20px;
+    border: 1px solid #eaeaea;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
 /* --- Tabla de Resultados --- */
 .encabezado-resultados {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 15px;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid var(--color-primario, #8B0000);
+}
+
+.encabezado-resultados h3 {
+    margin: 0;
+}
+
+.contador-resultados {
+    color: #777;
+    font-size: 0.9rem;
+}
+
+/* --- Selector de vista Tabla / Mapa --- */
+.cambio-vista {
+    display: flex;
+    gap: 8px;
+}
+
+.boton-vista {
+    padding: 8px 16px;
+    border: 1px solid var(--color-primario, #8B0000);
+    background: #ffffff;
+    color: var(--color-primario, #8B0000);
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: 0.3s;
+}
+
+.boton-vista.activo {
+    background: var(--color-primario, #8B0000);
+    color: #ffffff;
+}
+
+.boton-vista:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    border-color: #ccc;
+    color: #999;
+    background: #f4f4f4;
+}
+
+/* --- Espacio reservado para el mapa --- */
+.contenedor-mapa {
+    min-height: 420px;
+    border: 1px dashed #ccc;
+    border-radius: 8px;
+    background: #f9f9f9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.placeholder-mapa {
+    text-align: center;
+    color: #777;
+    padding: 20px;
+}
+
+.placeholder-mapa p:first-child {
+    font-size: 1.3rem;
+    margin-bottom: 8px;
+}
+
+.placeholder-mapa-detalle {
+    font-size: 0.9rem;
+    max-width: 400px;
+    margin: 0 auto;
 }
 
 .contenedor-tabla {
     overflow-x: auto; /* Permite scroll horizontal si la pantalla es pequeña */
+    overflow-y: auto; /* Scroll vertical interno cuando hay muchas filas */
+    max-height: 520px; /* Alto máximo antes de activar el scroll interno */
     border: 1px solid #eaeaea;
     border-radius: 8px;
 }
 
+.tabla-ciudadana thead th {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
 .tabla-ciudadana {
     width: 100%;
+    table-layout: fixed;
     border-collapse: collapse;
     background: #ffffff;
 }
@@ -114,8 +242,17 @@
 .tabla-ciudadana th, .tabla-ciudadana td {
     padding: 12px 15px;
     text-align: left;
+    vertical-align: top;
     border-bottom: 1px solid #eaeaea;
 }
+
+/* Proporciones de columna: más espacio para Valor y Acción, para que
+   el botón "Ver detalle" no se encime con los números */
+.tabla-ciudadana th:nth-child(1), .tabla-ciudadana td:nth-child(1) { width: 32%; }
+.tabla-ciudadana th:nth-child(2), .tabla-ciudadana td:nth-child(2) { width: 21%; }
+.tabla-ciudadana th:nth-child(3), .tabla-ciudadana td:nth-child(3) { width: 20%; }
+.tabla-ciudadana th:nth-child(4), .tabla-ciudadana td:nth-child(4) { width: 12%; }
+.tabla-ciudadana th:nth-child(5), .tabla-ciudadana td:nth-child(5) { width: 15%; }
 
 .tabla-ciudadana th {
     background-color: #f4f6f8;
@@ -134,6 +271,7 @@
     padding: 5px 10px;
     border-radius: 4px;
     cursor: pointer;
+    white-space: nowrap;
     transition: 0.3s;
 }
 
