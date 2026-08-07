@@ -6,6 +6,18 @@
 // ============================================================
 
 document.addEventListener('DOMContentLoaded', () => {
+	// Profundidad progresiva del header al hacer scroll (solo donde es sticky)
+	const encabezado = document.getElementById('encabezado-principal');
+	const prefiereMenosMovimiento = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+	if (encabezado && !encabezado.classList.contains('header-no-sticky') && !prefiereMenosMovimiento) {
+		window.addEventListener('scroll', () => {
+			encabezado.classList.toggle('encabezado-con-scroll', window.scrollY > 12);
+		}, { passive: true });
+	}
+});
+
+document.addEventListener('DOMContentLoaded', () => {
 
 	// Navegación: alternar menú móvil
 	const botonMenu = document.querySelector('.boton-menu-movil');

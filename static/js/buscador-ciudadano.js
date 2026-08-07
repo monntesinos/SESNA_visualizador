@@ -8,6 +8,39 @@
 
 document.addEventListener('DOMContentLoaded', function () {
 
+	// --- Contador de resultados animado (cuenta hacia arriba desde 0) ---
+	(function animarContador() {
+		const elementoContador = document.getElementById('contador-numero');
+		if (!elementoContador) {
+			return;
+		}
+
+		const total = parseInt(elementoContador.getAttribute('data-total'), 10) || 0;
+		const prefiereMenosMovimiento = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+		if (prefiereMenosMovimiento || total === 0) {
+			elementoContador.textContent = total.toLocaleString('es-MX');
+			return;
+		}
+
+		const duracionMs = 600;
+		const inicio = performance.now();
+
+		function paso(ahora) {
+			const progreso = Math.min((ahora - inicio) / duracionMs, 1);
+			// Easing suave de salida (desacelera al final)
+			const progresoSuavizado = 1 - Math.pow(1 - progreso, 3);
+			const valorActual = Math.round(progresoSuavizado * total);
+			elementoContador.textContent = valorActual.toLocaleString('es-MX');
+
+			if (progreso < 1) {
+				requestAnimationFrame(paso);
+			}
+		}
+
+		requestAnimationFrame(paso);
+	})();
+
 	// --- Autocompletado de la barra de búsqueda de variables ---
 	(function inicializarAutocompletado() {
 		const formularioBusqueda = document.getElementById('formulario-busqueda-texto');

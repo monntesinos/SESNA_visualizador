@@ -43,7 +43,93 @@
     border-radius: 6px;
 }
 
-/* --- Autocompletado de la barra de búsqueda --- */
+/* ============================================================
+   BANNER DEL BUSCADOR: sello, etiqueta, línea dorada, textura
+   sutil de fondo y animación de entrada orquestada.
+   ============================================================ */
+
+.banner-buscador {
+    position: relative;
+}
+
+/* Textura sutil tipo "papel oficial": líneas diagonales finas,
+   casi imperceptibles, solo dan un poco de riqueza al fondo */
+.banner-buscador::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: repeating-linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.035) 0px,
+        rgba(255, 255, 255, 0.035) 1px,
+        transparent 1px,
+        transparent 14px
+    );
+    pointer-events: none;
+}
+
+.sello-institucional {
+    width: 56px;
+    height: 56px;
+    margin: 0 auto var(--espacio-xs);
+}
+
+.sello-institucional svg {
+    width: 100%;
+    height: 100%;
+}
+
+.banner-eyebrow {
+    font-family: var(--fuente-datos);
+    font-size: var(--texto-xs);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-acento);
+    margin-bottom: var(--espacio-xs);
+}
+
+.banner-buscador h1 {
+    font-size: calc(var(--texto-3xl) + 0.4rem);
+}
+
+.linea-dorada {
+    display: block;
+    width: 72px;
+    height: 2px;
+    margin: var(--espacio-sm) auto 0;
+    background: linear-gradient(90deg, transparent, var(--color-acento), transparent);
+}
+
+/* --- Animación de entrada orquestada (respeta reduced-motion) --- */
+@media (prefers-reduced-motion: no-preference) {
+
+    @keyframes hero-aparecer {
+        from { opacity: 0; transform: translateY(10px); }
+        to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes hero-linea {
+        from { transform: scaleX(0); }
+        to   { transform: scaleX(1); }
+    }
+
+    .banner-buscador .sello-institucional,
+    .banner-buscador .banner-eyebrow,
+    .banner-buscador h1,
+    .banner-buscador .subtitulo {
+        animation: hero-aparecer 0.6s cubic-bezier(0.4, 0, 0.2, 1) both;
+    }
+
+    .banner-buscador .sello-institucional { animation-delay: 0s; }
+    .banner-buscador .banner-eyebrow      { animation-delay: 0.12s; }
+    .banner-buscador h1                   { animation-delay: 0.22s; }
+    .banner-buscador .subtitulo           { animation-delay: 0.34s; }
+
+    .banner-buscador .linea-dorada {
+        animation: hero-linea 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.55s both;
+        transform-origin: center;
+    }
+}
 .contenedor-autocompletado {
     position: relative;
     flex: 1;
@@ -101,7 +187,7 @@
 .titulo-filtros {
     font-size: 1.2rem;
     margin-bottom: 20px;
-    border-bottom: 2px solid var(--color-primario, #8B0000);
+    border-bottom: 2px solid var(--color-primario, #0E2A3F);
     padding-bottom: 10px;
 }
 
@@ -114,7 +200,10 @@
 .grupo-filtro label {
     font-weight: 600;
     margin-bottom: 5px;
-    font-size: 0.9rem;
+    font-size: 0.78rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-texto-claro, #5B6469);
 }
 
 .input-select {
@@ -124,9 +213,12 @@
     width: 100%;
 }
 
-/* Clase para ocultar elementos dinámicamente */
+/* Clase para ocultar elementos dinámicamente.
+   Se usa !important a propósito: esta clase representa "estado oculto"
+   y no debe poder ser sobreescrita por otras reglas de layout (flex, grid, etc.)
+   sin importar el orden en que aparezcan en el archivo. */
 .oculto {
-    display: none;
+    display: none !important;
 }
 
 /* --- Panel de Resultados (misma tarjeta que panel-filtros, para armonía visual) --- */
@@ -147,7 +239,7 @@
     gap: 10px;
     margin-bottom: 20px;
     padding-bottom: 15px;
-    border-bottom: 2px solid var(--color-primario, #8B0000);
+    border-bottom: 2px solid var(--color-primario, #0E2A3F);
 }
 
 .encabezado-resultados h3 {
@@ -159,6 +251,71 @@
     font-size: 0.9rem;
 }
 
+.contador-numero {
+    font-family: var(--fuente-datos);
+    font-weight: 600;
+    color: var(--color-secundario, var(--color-primario));
+}
+
+/* ============================================================
+   MOVIMIENTO: filas escalonadas al cargar, foco y hover.
+   Todo se desactiva automáticamente si la persona tiene
+   activado "reducir movimiento" en su sistema operativo.
+   ============================================================ */
+@media (prefers-reduced-motion: no-preference) {
+
+    @keyframes aparecer-fila {
+        from { opacity: 0; transform: translateY(6px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .tabla-ciudadana tbody tr {
+        animation: aparecer-fila 0.35s ease-out backwards;
+    }
+
+    /* Escalonado: cada fila aparece un poco después que la anterior
+       (hasta la fila 15; de ahí en adelante todas al mismo tiempo,
+       para no hacer esperar de más en tablas largas) */
+    .tabla-ciudadana tbody tr:nth-child(1)  { animation-delay: 0.02s; }
+    .tabla-ciudadana tbody tr:nth-child(2)  { animation-delay: 0.05s; }
+    .tabla-ciudadana tbody tr:nth-child(3)  { animation-delay: 0.08s; }
+    .tabla-ciudadana tbody tr:nth-child(4)  { animation-delay: 0.11s; }
+    .tabla-ciudadana tbody tr:nth-child(5)  { animation-delay: 0.14s; }
+    .tabla-ciudadana tbody tr:nth-child(6)  { animation-delay: 0.17s; }
+    .tabla-ciudadana tbody tr:nth-child(7)  { animation-delay: 0.20s; }
+    .tabla-ciudadana tbody tr:nth-child(8)  { animation-delay: 0.23s; }
+    .tabla-ciudadana tbody tr:nth-child(9)  { animation-delay: 0.26s; }
+    .tabla-ciudadana tbody tr:nth-child(10) { animation-delay: 0.29s; }
+    .tabla-ciudadana tbody tr:nth-child(n+11) { animation-delay: 0.32s; }
+}
+
+.tabla-ciudadana tbody tr {
+    transition: background-color var(--transicion, 0.2s ease-in-out), box-shadow var(--transicion, 0.2s ease-in-out);
+}
+
+.tabla-ciudadana tbody tr:hover {
+    background-color: var(--color-fondo-alterno, #F3F5F4);
+}
+
+.boton-ver, .boton-vista, .boton {
+    transition: transform var(--transicion, 0.2s ease-in-out), box-shadow var(--transicion, 0.2s ease-in-out);
+}
+
+.boton-ver:hover, .boton-vista:not(:disabled):hover {
+    transform: translateY(-2px);
+    box-shadow: var(--sombra-suave, 0 2px 6px rgba(0,0,0,0.12));
+}
+
+/* Foco de accesibilidad con el color teal de datos, en vez del azul
+   por defecto del navegador */
+.input-select:focus,
+.input-busqueda-grande:focus,
+#filtro-eje:focus, #filtro-tema:focus, #filtro-ano:focus, #filtro-estado:focus {
+    outline: none;
+    border-color: var(--color-secundario, var(--color-primario));
+    box-shadow: 0 0 0 3px rgba(14, 124, 123, 0.18);
+}
+
 /* --- Selector de vista Tabla / Mapa --- */
 .cambio-vista {
     display: flex;
@@ -167,9 +324,9 @@
 
 .boton-vista {
     padding: 8px 16px;
-    border: 1px solid var(--color-primario, #8B0000);
+    border: 1px solid var(--color-primario, #0E2A3F);
     background: #ffffff;
-    color: var(--color-primario, #8B0000);
+    color: var(--color-primario, #0E2A3F);
     border-radius: 4px;
     cursor: pointer;
     font-weight: 600;
@@ -178,7 +335,7 @@
 }
 
 .boton-vista.activo {
-    background: var(--color-primario, #8B0000);
+    background: var(--color-primario, #0E2A3F);
     color: #ffffff;
 }
 
@@ -254,6 +411,14 @@
 .tabla-ciudadana th:nth-child(4), .tabla-ciudadana td:nth-child(4) { width: 12%; }
 .tabla-ciudadana th:nth-child(5), .tabla-ciudadana td:nth-child(5) { width: 15%; }
 
+/* La columna de Valor usa la fuente de datos (monoespaciada), para que
+   los números se alineen como en un registro/expediente oficial */
+.tabla-ciudadana td:nth-child(4) {
+    font-family: var(--fuente-datos);
+    font-variant-numeric: tabular-nums;
+    color: var(--color-secundario-oscuro, var(--color-primario));
+}
+
 .tabla-ciudadana th {
     background-color: #f4f6f8;
     font-weight: 600;
@@ -266,8 +431,8 @@
 
 .boton-ver {
     background-color: transparent;
-    color: var(--color-primario, #8B0000);
-    border: 1px solid var(--color-primario, #8B0000);
+    color: var(--color-primario, #0E2A3F);
+    border: 1px solid var(--color-primario, #0E2A3F);
     padding: 5px 10px;
     border-radius: 4px;
     cursor: pointer;
@@ -276,7 +441,7 @@
 }
 
 .boton-ver:hover {
-    background-color: var(--color-primario, #8B0000);
+    background-color: var(--color-primario, #0E2A3F);
     color: white;
 }
 
@@ -302,4 +467,8 @@
     display: flex;
     align-items: center;
     gap: 8px; /* Espacio entre el circulito y el texto */
+}
+
+.opciones-radio input[type="radio"] {
+    accent-color: var(--color-primario, #0E2A3F);
 }

@@ -39,8 +39,8 @@ def buscador_ciudadano():
     filtro_texto = request.args.get('q')
 
     # Lista de años disponible para el filtro: de 2023 al año actual
-    anio_actual = datetime.now().year
-    anos_disponibles = list(range(anio_actual, 2022, -1))  # ej. [2026, 2025, ..., 2023]
+    current_year = datetime.now().year
+    anos_disponibles = list(range(current_year, 2022, -1))  # ej. [2026, 2025, ..., 2023]
 
     # Lista de estados para el <select>, generada desde la tabla 'estado' de Supabase
     try:
@@ -91,6 +91,7 @@ def buscador_ciudadano():
         lista_variables = []
         total_pages = 1
         page = 1
+        total_registros = 0
 
     return render_template(
         "buscador-ciudadano.html", 
@@ -98,6 +99,7 @@ def buscador_ciudadano():
         variables_supabase=lista_variables,
         page=page,
         total_pages=total_pages,
+        total_registros=total_registros,
         anos_disponibles=anos_disponibles,
         lista_estados=lista_estados,
         filtro_eje=filtro_eje,

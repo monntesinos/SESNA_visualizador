@@ -13,10 +13,19 @@
 {% block content %}
 
 	<!-- Banner principal -->
-	<section class="banner">
+	<section class="banner banner-buscador">
 		<div class="container">
+			<div class="sello-institucional" aria-hidden="true">
+				<svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<circle cx="32" cy="32" r="30" stroke="var(--color-acento)" stroke-width="1.5"/>
+					<circle cx="32" cy="32" r="25" stroke="var(--color-acento)" stroke-width="1" stroke-dasharray="2 3"/>
+					<path d="M23 33.5L29 39.5L41 25.5" stroke="var(--color-acento)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+				</svg>
+			</div>
+			<p class="banner-eyebrow">Sistema Nacional Anticorrupción &middot; Datos Abiertos</p>
 			<h1>Buscador ciudadano</h1>
-			<p class="subtitulo">Una herramienta de consulta pensada para la ciudadanía, simple y accesible.</p>
+			<p class="subtitulo">Consulta datos públicos de combate a la corrupción, filtrados por eje, año, nivel de gobierno y entidad federativa.</p>
+			<span class="linea-dorada" aria-hidden="true"></span>
 		</div>
 	</section>
 
@@ -106,7 +115,10 @@
 				<section class="panel-resultados">
 					<div class="encabezado-resultados">
 						<h3>Explora el Catálogo</h3>
-						<span class="contador-resultados">Variables Disponibles</span>
+						<span class="contador-resultados">
+							<span class="contador-numero" id="contador-numero" data-total="{{ total_registros or 0 }}">0</span>
+							resultados encontrados
+						</span>
 
 						<!-- Selector de vista: Tabla / Mapa -->
 						<!-- El botón "Ver mapa" solo se habilita cuando el nivel de gobierno es Estatal/Municipal.
